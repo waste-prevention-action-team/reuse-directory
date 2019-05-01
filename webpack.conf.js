@@ -1,6 +1,9 @@
 import path from 'path'
 import Webpack from 'webpack'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import RewriteImportPlugin from 'less-plugin-rewrite-import'
 import Visualizer from 'webpack-visualizer-plugin'
 
 const MODE = JSON.stringify(process.env.NODE_ENV || 'development')
@@ -20,7 +23,6 @@ export default {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].js',
         sourceMapFilename: 'js/[name].js.map',
-        publicPath: MODE === '"development"' ? '/' : undefined,
         crossOriginLoading: 'anonymous'
     },
 
@@ -29,7 +31,6 @@ export default {
         host: '0.0.0.0',
         port: 3000,
         inline: true,
-        publicPath: '/',
         stats: ['minimal', 'color'],
         allowedHosts: JSON.parse(process.env.ALLOWED_HOSTS || '["localhost"]'),
         headers: { 'Access-Control-Allow-Origin': '*' }
@@ -39,19 +40,55 @@ export default {
         rules: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel-loader',
-                query: {
-                    cacheDirectory: MODE === '"development"',
-                    cacheCompression: false
-                }
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/env', '@babel/react'],
+                            plugins: [
+                                '@babel/plugin-proposal-class-properties',
+                                '@babel/plugin-proposal-export-default-from',
+                                '@babel/plugin-proposal-export-namespace-from'
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            emitWarning: MODE === '"development"'
+                        }
+                    }
+                ]
             },
             {
-                test: /\.less$/,
-                use: ['style-loader', 'css-loader', 'less-loader']
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.(less|css)$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: MODE === '"development"',
+                            publicPath: '../'
+                        }
+                    },
+                    'css-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
+                            plugins: [
+                                new RewriteImportPlugin({
+                                    paths: {
+                                        '../../theme.config': path.resolve(
+                                            path.resolve(__dirname, 'src', 'style', 'semantic', 'theme.config')
+                                        )
+                                    }
+                                })
+                            ],
+                            sourceMap: true
+                        }
+                    }
+                ]
             },
             {
                 type: 'javascript/auto',
@@ -94,12 +131,18 @@ export default {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve('.', 'src', 'index.html')
-        })
+        }),
+        new FaviconsWebpackPlugin({
+            logo: path.resolve('.', 'src', 'images', 'logo-small-wpat.jpg'),
+            prefix: 'icons/',
+            emitStats: false,
+            inject: true
+        }),
+        new MiniCssExtractPlugin({ filename: 'css/[name].css' })
     ].concat(
         MODE === '"development"' ?
             [
                 new Webpack.NamedModulesPlugin(),
-                new Webpack.NoEmitOnErrorsPlugin(),
                 new Visualizer()
             ] :
             []
