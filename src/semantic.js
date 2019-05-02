@@ -2,6 +2,7 @@ import _Button from 'semantic-ui-react/dist/es/elements/Button'
 import _Grid from 'semantic-ui-react/dist/es/collections/Grid'
 import _Header from 'semantic-ui-react/dist/es/elements/Header'
 import _Icon from 'semantic-ui-react/dist/es/elements/Icon'
+import _Input from 'semantic-ui-react/dist/es/elements/Input'
 import _Image from 'semantic-ui-react/dist/es/elements/Image'
 import _List from 'semantic-ui-react/dist/es/elements/List'
 import _Menu from 'semantic-ui-react/dist/es/collections/Menu'
@@ -15,6 +16,7 @@ export const Grid = _Grid
 export const Header = _Header
 export const Icon = _Icon
 export const Image = _Image
+export const Input = _Input
 export const List = _List
 export const Menu = _Menu
 export const Modal = _Modal

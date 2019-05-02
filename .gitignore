@@ -2,4 +2,5 @@ build/
 data/
 resources/
 
+config.js*
 npm-debug.log

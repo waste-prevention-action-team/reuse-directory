@@ -6,6 +6,8 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import RewriteImportPlugin from 'less-plugin-rewrite-import'
 import Visualizer from 'webpack-visualizer-plugin'
 
+import CONFIG from './src/config'
+
 const MODE = JSON.stringify(process.env.NODE_ENV || 'development')
 
 export default {
@@ -21,8 +23,8 @@ export default {
 
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'js/[name].js',
-        sourceMapFilename: 'js/[name].js.map',
+        filename: 'js/[name]-[hash].js',
+        sourceMapFilename: 'js/[name]-[hash].js.map',
         crossOriginLoading: 'anonymous'
     },
 
@@ -130,7 +132,8 @@ export default {
             'process.env.NODE_ENV': MODE
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve('.', 'src', 'index.html')
+            template: path.resolve('.', 'src', 'index.html'),
+            title: CONFIG.site_title
         }),
         new FaviconsWebpackPlugin({
             logo: path.resolve('.', 'src', 'images', 'logo-small-wpat.jpg'),
@@ -138,7 +141,7 @@ export default {
             emitStats: false,
             inject: true
         }),
-        new MiniCssExtractPlugin({ filename: 'css/[name].css' })
+        new MiniCssExtractPlugin({ filename: 'css/[name]-[hash].css' })
     ].concat(
         MODE === '"development"' ?
             [
