@@ -1,36 +1,36 @@
 import React from 'react'
 
-import { Input, Menu, Segment } from '../../semantic'
+import { Input, Segment } from '../../semantic'
 import SheetContext from '../Sheet/Context'
+
+import LocationList from './LocationList'
+import LocationCategoryMenu from './LocationCategoryMenu';
 
 const Sidebar = () => {
     const [activeCategory, setActiveCategory] = React.useState(0)
     return (
         <Segment basic>
             <SheetContext.Consumer>
-                {data => (
-                    <Menu widths={data.locationCategories.length}>
-                        {data
-                            .locationCategories
-                            .map((category, idx) => (
-                                <Menu.Item
-                                    key={category}
-                                    active={activeCategory === idx}
-                                    onClick={() => setActiveCategory(idx)}
-                                >
-                                    {category}
-                                </Menu.Item>
-                            ))
-                        }
-                    </Menu>
+                {({ locationCategories, locations }) => (
+                    <React.Fragment>
+                        <LocationCategoryMenu
+                            categories={locationCategories}
+                            activeCategory={activeCategory}
+                            onCategoryChange={setActiveCategory}
+                        />
+                        <Input
+                            type="text"
+                            placeholder="Search"
+                            icon="search"
+                            fluid
+                        />
+                        <LocationList
+                            locations={locations}
+                            locationCategory={activeCategory}
+                        />
+                    </React.Fragment>
                 )}
             </SheetContext.Consumer>
-            <Input
-                type="text"
-                placeholder="Search"
-                icon="search"
-                fluid
-            />
         </Segment>
     )
 }

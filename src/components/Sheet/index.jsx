@@ -21,21 +21,25 @@ class Sheet extends React.Component {
         }
 
         this.data = {
-            locationCategories: []
+            locationCategories: [],
+            locatins: []
         }
     }
 
     componentDidMount() {
-        // this.processSheets(FIXTURES)
-        const ranges = Object.values(SHEET_SCHEMA).reduce((rangeQuery, { sheetName, columns }) => `${rangeQuery}&ranges='${sheetName}'!${columns}`, '')
-        axios
-            .get(
-                encodeURI(
-                    `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.google_sheet_id}/?key=${CONFIG.google_sheet_api_key}&fields=sheets(data.rowData.values(effectiveValue.stringValue))${ranges}`
-                )
-            )
-            .then(response => this.processSheets(response.data.sheets))
-            .catch(console.error)
+        this.processSheets(FIXTURES)
+        // const ranges = Object.values(SHEET_SCHEMA).reduce((rangeQuery, { sheetName, columns }) => `${rangeQuery}&ranges='${sheetName}'!${columns}`, '')
+        // axios
+        //     .get(
+        //         encodeURI(
+        //             `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.google_sheet_id}/?key=${CONFIG.google_sheet_api_key}&fields=sheets(data.rowData.values(effectiveValue))${ranges}`
+        //         )
+        //     )
+        //     .then(response => this.processSheets(response.data.sheets))
+        //     .catch((error) => {
+        //         console.error(error)
+        //         this.setState({ dataStatus: 'error' })
+        //     })
     }
 
     processSheets = (sheets) => {
@@ -45,6 +49,19 @@ class Sheet extends React.Component {
                 locationCategories[i].values[0].effectiveValue.stringValue
             )
         }
+
+        const locations = sheets[SHEET_SCHEMA.locations.sheetIndex].data[0].rowData
+        const locationAttrs = locations.shift().values.map(attr => attr.effectiveValue.stringValue)
+        this.data.locations = locations
+            .filter(({ values }) => values)
+            .map(({ values }) => values.reduce(
+                (mappedAttrs, value, idx) => {
+                    mappedAttrs[locationAttrs[idx]] = value.effectiveValue ? value.effectiveValue.stringValue || value.effectiveValue.numberValue: null
+                    return mappedAttrs
+                },
+                {}
+            ))
+
         this.setState({ dataStatus: 'done' })
     }
 
