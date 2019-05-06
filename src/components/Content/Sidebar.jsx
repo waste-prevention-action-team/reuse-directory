@@ -1,13 +1,14 @@
 import React from 'react'
 
 import { Input, Segment } from '../../semantic'
-import SheetContext from '../Sheet/Context'
+import { SheetContext } from '../Sheet'
 
 import LocationList from './LocationList'
-import LocationCategoryMenu from './LocationCategoryMenu';
+import LocationCategoryMenu from './LocationCategoryMenu'
 
 const Sidebar = () => {
-    const [activeCategory, setActiveCategory] = React.useState(0)
+    const [activeCategoryIndex, setActiveCategoryIndex] = React.useState(0)
+    const [searchTerm, setSearchTerm] = React.useState('')
     return (
         <Segment basic>
             <SheetContext.Consumer>
@@ -15,18 +16,21 @@ const Sidebar = () => {
                     <React.Fragment>
                         <LocationCategoryMenu
                             categories={locationCategories}
-                            activeCategory={activeCategory}
-                            onCategoryChange={setActiveCategory}
+                            activeCategory={activeCategoryIndex}
+                            onCategoryChange={setActiveCategoryIndex}
                         />
                         <Input
                             type="text"
                             placeholder="Search"
                             icon="search"
                             fluid
+                            value={searchTerm}
+                            onChange={(e, { value }) => setSearchTerm(value)}
                         />
                         <LocationList
                             locations={locations}
-                            locationCategory={activeCategory}
+                            locationCategory={locationCategories[activeCategoryIndex]}
+                            searchTerm={searchTerm}
                         />
                     </React.Fragment>
                 )}

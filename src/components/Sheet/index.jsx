@@ -3,10 +3,12 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 
 import CONFIG from '../../config'
-import FIXTURES from '../../fixtures'
+// import FIXTURES from '../../fixtures'
 import Context from './Context'
 
 const SHEET_SCHEMA = CONFIG.google_sheet_schema
+
+export const SheetContext = Context
 
 class Sheet extends React.Component {
     static propTypes = {
@@ -27,19 +29,18 @@ class Sheet extends React.Component {
     }
 
     componentDidMount() {
-        this.processSheets(FIXTURES)
-        // const ranges = Object.values(SHEET_SCHEMA).reduce((rangeQuery, { sheetName, columns }) => `${rangeQuery}&ranges='${sheetName}'!${columns}`, '')
-        // axios
-        //     .get(
-        //         encodeURI(
-        //             `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.google_sheet_id}/?key=${CONFIG.google_sheet_api_key}&fields=sheets(data.rowData.values(effectiveValue))${ranges}`
-        //         )
-        //     )
-        //     .then(response => this.processSheets(response.data.sheets))
-        //     .catch((error) => {
-        //         console.error(error)
-        //         this.setState({ dataStatus: 'error' })
-        //     })
+        const ranges = Object.values(SHEET_SCHEMA).reduce((rangeQuery, { sheetName, columns }) => `${rangeQuery}&ranges='${sheetName}'!${columns}`, '')
+        axios
+            .get(
+                encodeURI(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.google_sheet_id}/?key=${CONFIG.google_sheet_api_key}&fields=sheets(data.rowData.values(effectiveValue))${ranges}`
+                )
+            )
+            .then(response => this.processSheets(response.data.sheets))
+            .catch((error) => {
+                console.error(error)
+                this.setState({ dataStatus: 'error' })
+            })
     }
 
     processSheets = (sheets) => {
@@ -56,7 +57,9 @@ class Sheet extends React.Component {
             .filter(({ values }) => values)
             .map(({ values }) => values.reduce(
                 (mappedAttrs, value, idx) => {
-                    mappedAttrs[locationAttrs[idx]] = value.effectiveValue ? value.effectiveValue.stringValue || value.effectiveValue.numberValue: null
+                    mappedAttrs[locationAttrs[idx]] = value.effectiveValue ?
+                        value.effectiveValue.stringValue || value.effectiveValue.numberValue :
+                        null
                     return mappedAttrs
                 },
                 {}

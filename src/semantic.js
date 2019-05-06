@@ -1,4 +1,5 @@
 import _Button from 'semantic-ui-react/dist/es/elements/Button'
+import _Card from 'semantic-ui-react/dist/es/views/Card'
 import _Grid from 'semantic-ui-react/dist/es/collections/Grid'
 import _Header from 'semantic-ui-react/dist/es/elements/Header'
 import _Icon from 'semantic-ui-react/dist/es/elements/Icon'
@@ -12,6 +13,7 @@ import _Segment from 'semantic-ui-react/dist/es/elements/Segment'
 import _Sidebar from 'semantic-ui-react/dist/es/modules/Sidebar'
 
 export const Button = _Button
+export const Card = _Card
 export const Grid = _Grid
 export const Header = _Header
 export const Icon = _Icon
