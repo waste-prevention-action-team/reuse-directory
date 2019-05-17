@@ -14,7 +14,9 @@ export default () => (
             size="small"
             closeIcon
         >
-            <Modal.Header>About ReUse Directory</Modal.Header>
+            <Modal.Header>
+                About ReUse Directory
+            </Modal.Header>
             <Modal.Content>
                 <Modal.Description>
                     PLACEHOLDER

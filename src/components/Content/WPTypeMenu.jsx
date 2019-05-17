@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import { Menu } from '../../semantic'
 
-const LocationCategoryMenu = ({ categories, activeCategoryIndex, onCategoryChange }) => (
-    <Menu widths={categories.length}>
+const WPTypeMenu = ({ categories, activeCategoryIndex, onCategoryChange }) => (
+    <Menu widths={categories.length} size="mini">
         {categories
             .map((category, idx) => (
                 <Menu.Item
@@ -19,14 +19,14 @@ const LocationCategoryMenu = ({ categories, activeCategoryIndex, onCategoryChang
     </Menu>
 )
 
-LocationCategoryMenu.propTypes = {
+WPTypeMenu.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
     activeCategoryIndex: PropTypes.number,
     onCategoryChange: PropTypes.func.isRequired
 }
 
-LocationCategoryMenu.defaultProps = {
+WPTypeMenu.defaultProps = {
     activeCategoryIndex: 0
 }
 
-export default LocationCategoryMenu
+export default WPTypeMenu

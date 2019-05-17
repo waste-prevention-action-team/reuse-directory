@@ -1,6 +1,9 @@
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
+import markerShadowImage from 'leaflet/dist/images/marker-shadow.png'
+import markerImage from '../../images/map-marker-alt-solid.svg'
+
 const BASEMAP = L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
     {
@@ -15,24 +18,42 @@ const BASEMAP = L.tileLayer(
     }
 )
 
-const initBaseControls = (map) => {
-    L.control.zoom({
-        position: 'topright'
-    }).addTo(map)
+class LeafletMap {
+    constructor() {
+        this.map = L.map('Map', {
+            center: [44.566667, -123.283333],
+            zoom: 11,
+            layers: [BASEMAP],
+            zoomControl: false,
+            preferCanvas: true
+        })
+
+        L.control.zoom({
+            position: 'topright'
+        }).addTo(this.map)
+
+        this.markersLayer = L.layerGroup([]).addTo(this.map)
+    }
+
+    getMarkerIcon = color => (
+        L.icon({
+            iconUrl: `data:image/svg+xml;base64,${btoa(markerImage.replace('currentColor', color))}`,
+            shadowUrl: markerShadowImage,
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            tooltipAnchor: [16, -28],
+            shadowSize: [41, 41],
+            className: color
+        })
+    )
+
+    updateLocationsListMarkers = (locations, color = 'gold') => {
+        this.markersLayer.clearLayers()
+        locations.forEach(({ Latitude, Longitude }) => {
+            L.marker([Latitude, Longitude], { icon: this.getMarkerIcon(color) }).addTo(this.markersLayer)
+        })
+    }
 }
 
-const setUp = () => {
-    const map = L.map('Map', {
-        center: [44.566667, -123.283333],
-        zoom: 11,
-        layers: [BASEMAP],
-        zoomControl: false,
-        preferCanvas: true
-    })
-
-    initBaseControls(map)
-
-    return map
-}
-
-export default setUp
+export default LeafletMap

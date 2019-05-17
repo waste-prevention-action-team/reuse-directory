@@ -1,60 +1,148 @@
 export default [
     {
-        "data": [
+        data: [
             {
-                "rowData": [
+                rowData: [
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Name"
+                                effectiveValue: {
+                                    stringValue: 'Id'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Category"
+                                effectiveValue: {
+                                    stringValue: 'Item'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Type'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Category'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Books"
+                                effectiveValue: {
+                                    numberValue: 1
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Paper"
+                                effectiveValue: {
+                                    stringValue: 'Arts and Crafts'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'N/A'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Art Supplies'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Cans"
+                                effectiveValue: {
+                                    numberValue: 2
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Metal"
+                                effectiveValue: {
+                                    stringValue: 'Blankets'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'N/A'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Bedding / Bath'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Bottles"
+                                effectiveValue: {
+                                    numberValue: 3
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Glass"
+                                effectiveValue: {
+                                    stringValue: 'Arts and Crafts'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'N/A'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Children\'s goods'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 4
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Dishwashers'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Electronic'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Appliance, Large'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 5
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Bricks'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'N/A'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Building / Home Improvement'
                                 }
                             }
                         ]
@@ -64,138 +152,271 @@ export default [
         ]
     },
     {
-        "data": [
+        data: [
             {
-                "rowData": [
+                rowData: [
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Name"
+                                effectiveValue: {
+                                    stringValue: 'Id'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Address"
+                                effectiveValue: {
+                                    stringValue: 'Name'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Latitude"
+                                effectiveValue: {
+                                    stringValue: 'Address'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Longitude"
+                                effectiveValue: {
+                                    stringValue: 'Latitude'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Phone"
+                                effectiveValue: {
+                                    stringValue: 'Longitude'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Email"
+                                effectiveValue: {
+                                    stringValue: 'Phone'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Notes"
+                                effectiveValue: {
+                                    stringValue: 'Email'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Categories"
+                                effectiveValue: {
+                                    stringValue: 'Hours'
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Materials"
-                                }
-                            },
-                            {
-                                "effectiveValue": {
-                                    "stringValue": "Hours"
+                                effectiveValue: {
+                                    stringValue: 'Notes'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Republic Services"
+                                effectiveValue: {
+                                    numberValue: 1
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location 1'
                                 }
                             },
                             {},
                             {
-                                "effectiveValue": {
-                                    "numberValue": 44.565237
+                                effectiveValue: {
+                                    numberValue: 44.5652
                                 }
                             },
                             {
-                                "effectiveValue": {
-                                    "numberValue": -123.263336
+                                effectiveValue: {
+                                    numberValue: -123.2633
                                 }
                             },
                             {},
-                            {},
-                            {},
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Households,Organic,Paper"
-                                }
-                            }
-                        ]
-                    },
-                    {},
-                    {
-                        "values": [
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {
-                                "effectiveValue": {
-                                    "stringValue": "Households,Paper"
-                                }
-                            }
-                        ]
-                    },
-                    {},
-                    {
-                        "values": [
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {
-                                "effectiveValue": {
-                                    "stringValue": "Cans,Bottles"
+                                effectiveValue: {
+                                    stringValue: 'test1@example.com'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 2
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location 2'
+                                }
+                            },
                             {},
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Organic,Paper"
+                                effectiveValue: {
+                                    numberValue: 44.5653
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: -123.2634
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'test2@example.com'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 3
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location 3'
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    numberValue: 44.5654
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: -123.2635
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'test1@example.com'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 4
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location 4'
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    numberValue: 44.5655
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: -123.2636
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'test2@example.com'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 5
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location 5'
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    numberValue: 44.5656
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: -123.2637
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'test1@example.com'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 6
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location 6'
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    numberValue: 44.5657
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: -123.2638
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'test2@example.com'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 7
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location 7'
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    numberValue: 44.5658
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: -123.2639
+                                }
+                            },
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'test1@example.com'
                                 }
                             }
                         ]
@@ -205,68 +426,195 @@ export default [
         ]
     },
     {
-        "data": [
+        data: [
             {
-                "rowData": [
+                rowData: [
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Category"
+                                effectiveValue: {
+                                    stringValue: 'Item'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Location'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Category'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Electronic"
+                                effectiveValue: {
+                                    numberValue: 1
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 1
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Reuse'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Glass"
+                                effectiveValue: {
+                                    numberValue: 1
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 1
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Repair'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Households"
+                                effectiveValue: {
+                                    numberValue: 1
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 2
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Reuse'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Metal"
+                                effectiveValue: {
+                                    numberValue: 2
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 3
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Reuse'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Organic"
+                                effectiveValue: {
+                                    numberValue: 3
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 3
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Repair'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Paper"
+                                effectiveValue: {
+                                    numberValue: 3
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 7
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Repair'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 4
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 4
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Reuse'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 5
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 6
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Repair'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {
+                                effectiveValue: {
+                                    numberValue: 5
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    numberValue: 3
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Repair'
                                 }
                             }
                         ]
@@ -276,50 +624,167 @@ export default [
         ]
     },
     {
-        "data": [
+        data: [
             {
-                "rowData": [
+                rowData: [
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Category"
+                                effectiveValue: {
+                                    stringValue: 'WP Types'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Item Types'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Item Categories'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Reuse"
+                                effectiveValue: {
+                                    stringValue: 'Reuse'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'N/A'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'N/A'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Recycle"
+                                effectiveValue: {
+                                    stringValue: 'Recycle'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Electronic'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Appliance, Large'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Repair"
+                                effectiveValue: {
+                                    stringValue: 'Repair'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Glass'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Appliance, Small'
                                 }
                             }
                         ]
                     },
                     {
-                        "values": [
+                        values: [
                             {
-                                "effectiveValue": {
-                                    "stringValue": "Hazardous"
+                                effectiveValue: {
+                                    stringValue: 'Hazardous'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Households'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Art Supplies'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Metal'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Bedding / Bath'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Organic'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Books'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Paper'
+                                }
+                            },
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Households'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {},
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Children\'s goods'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        values: [
+                            {},
+                            {},
+                            {
+                                effectiveValue: {
+                                    stringValue: 'Building / Home Improvement'
                                 }
                             }
                         ]

@@ -1,16 +1,16 @@
-import path from 'path'
-import Webpack from 'webpack'
-import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import RewriteImportPlugin from 'less-plugin-rewrite-import'
-import Visualizer from 'webpack-visualizer-plugin'
+const path = require('path')
+const Webpack = require('webpack')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Visualizer = require('webpack-visualizer-plugin')
+const RewriteImportPlugin = require('less-plugin-rewrite-import')
 
-import CONFIG from './src/config'
+const CONFIG = require('./src/config')
 
 const MODE = JSON.stringify(process.env.NODE_ENV || 'development')
 
-export default {
+module.exports = {
     target: 'web',
 
     mode: MODE === '"development"' ? 'development' : 'production',
@@ -105,7 +105,11 @@ export default {
                 ]
             },
             {
-                test: /\.(jpg|jpeg|png|eot|svg|ttf|woff|woff2)$/,
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            },
+            {
+                test: /\.(jpg|jpeg|png|eot|ttf|woff|woff2)$/,
                 use: [
                     {
                         loader: 'file-loader',

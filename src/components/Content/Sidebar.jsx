@@ -1,36 +1,26 @@
 import React from 'react'
 
-import { Input, Segment } from '../../semantic'
+import { Segment } from '../../semantic'
 import { SheetContext } from '../Sheet'
 
-import LocationList from './LocationList'
-import LocationCategoryMenu from './LocationCategoryMenu'
+import Items from '../Items'
+import WPTypeMenu from './WPTypeMenu'
 
 const Sidebar = () => {
     const [activeCategoryIndex, setActiveCategoryIndex] = React.useState(0)
-    const [searchTerm, setSearchTerm] = React.useState('')
     return (
         <Segment basic>
             <SheetContext.Consumer>
-                {({ locationCategories, locations }) => (
+                {({ wpTypes, items }) => (
                     <React.Fragment>
-                        <LocationCategoryMenu
-                            categories={locationCategories}
-                            activeCategory={activeCategoryIndex}
+                        <WPTypeMenu
+                            categories={wpTypes}
+                            activeCategoryIndex={activeCategoryIndex}
                             onCategoryChange={setActiveCategoryIndex}
                         />
-                        <Input
-                            type="text"
-                            placeholder="Search"
-                            icon="search"
-                            fluid
-                            value={searchTerm}
-                            onChange={(e, { value }) => setSearchTerm(value)}
-                        />
-                        <LocationList
-                            locations={locations}
-                            locationCategory={locationCategories[activeCategoryIndex]}
-                            searchTerm={searchTerm}
+                        <Items
+                            items={items}
+                            activeWPType={wpTypes[activeCategoryIndex]}
                         />
                     </React.Fragment>
                 )}
