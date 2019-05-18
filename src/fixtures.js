@@ -17,6 +17,11 @@ export default [
                             },
                             {
                                 effectiveValue: {
+                                    stringValue: 'Description'
+                                }
+                            },
+                            {
+                                effectiveValue: {
                                     stringValue: 'Type'
                                 }
                             },
@@ -39,6 +44,7 @@ export default [
                                     stringValue: 'Arts and Crafts'
                                 }
                             },
+                            {},
                             {
                                 effectiveValue: {
                                     stringValue: 'N/A'
@@ -63,6 +69,7 @@ export default [
                                     stringValue: 'Blankets'
                                 }
                             },
+                            {},
                             {
                                 effectiveValue: {
                                     stringValue: 'N/A'
@@ -87,6 +94,7 @@ export default [
                                     stringValue: 'Arts and Crafts'
                                 }
                             },
+                            {},
                             {
                                 effectiveValue: {
                                     stringValue: 'N/A'
@@ -111,6 +119,7 @@ export default [
                                     stringValue: 'Dishwashers'
                                 }
                             },
+                            {},
                             {
                                 effectiveValue: {
                                     stringValue: 'Electronic'
@@ -135,6 +144,7 @@ export default [
                                     stringValue: 'Bricks'
                                 }
                             },
+                            {},
                             {
                                 effectiveValue: {
                                     stringValue: 'N/A'

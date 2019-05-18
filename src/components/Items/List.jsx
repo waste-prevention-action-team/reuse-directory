@@ -16,22 +16,26 @@ const List = ({ items, onSelectItem }) => {
                 value={searchTerm}
                 onChange={(e, { value }) => setSearchTerm(value)}
             />
-            {items
-                .filter(item => item.searchText.indexOf(searchTerm.toLowerCase()) >= 0)
-                .sort((item1, item2) => item1.Item > item2.Item)
-                .map(({
-                    Id, Item, Category, Description
-                }) => (
-                    <Card
-                        key={Id}
-                        href="#"
-                        header={Item}
-                        meta={Category}
-                        description={Description}
-                        onClick={() => onSelectItem(Id)}
-                    />
-                ))
-            }
+            <br />
+            <Card.Group style={{ height: 'calc(100% - 50px)', overflowY: 'auto' }}>
+                {items
+                    .filter(item => item.searchText.indexOf(searchTerm.toLowerCase()) >= 0)
+                    .sort((item1, item2) => item1.Item > item2.Item)
+                    .map(({
+                        Id, Item, Category, Description
+                    }) => (
+                        <Card
+                            key={Id}
+                            href="#"
+                            fluid
+                            header={Item}
+                            meta={Category}
+                            description={Description}
+                            onClick={() => onSelectItem(Id)}
+                        />
+                    ))
+                }
+            </Card.Group>
         </React.Fragment>
     )
 }

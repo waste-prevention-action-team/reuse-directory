@@ -4,26 +4,14 @@ import 'leaflet/dist/leaflet.css'
 import markerShadowImage from 'leaflet/dist/images/marker-shadow.png'
 import markerImage from '../../images/map-marker-alt-solid.svg'
 
-const BASEMAP = L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
-    {
-        attribution: `
-            &copy; <a href="http://www.openstreetmap.org/copyright">
-            OpenStreetMap</a>, &copy; 
-            <a href="https://cartodb.com/attributions">Carto</a>
-        `,
-        subdomains: 'abcd',
-        maxZoom: 20,
-        minZoom: 0
-    }
-)
+import CONFIG from '../../config'
 
 class LeafletMap {
     constructor() {
         this.map = L.map('Map', {
-            center: [44.566667, -123.283333],
-            zoom: 11,
-            layers: [BASEMAP],
+            center: CONFIG.map.center,
+            zoom: CONFIG.map.zoom,
+            layers: [L.tileLayer(...CONFIG.map.basemap)],
             zoomControl: false,
             preferCanvas: true
         })
@@ -32,7 +20,12 @@ class LeafletMap {
             position: 'topright'
         }).addTo(this.map)
 
-        this.markersLayer = L.layerGroup([]).addTo(this.map)
+        this.markersLayer = L.featureGroup([]).addTo(this.map)
+    }
+
+    destroy = () => {
+        this.map.off()
+        this.map.remove()
     }
 
     getMarkerIcon = color => (
@@ -50,9 +43,17 @@ class LeafletMap {
 
     updateLocationsListMarkers = (locations, color = 'gold') => {
         this.markersLayer.clearLayers()
-        locations.forEach(({ Latitude, Longitude }) => {
-            L.marker([Latitude, Longitude], { icon: this.getMarkerIcon(color) }).addTo(this.markersLayer)
+        locations.forEach(({ Name, Latitude, Longitude }) => {
+            const marker = L.marker([Latitude, Longitude], { icon: this.getMarkerIcon(color) })
+            marker.addTo(this.markersLayer)
+            marker.bindPopup(`${Name}`)
         })
+        const bounds = this.markersLayer.getBounds()
+        if (Object.keys(bounds).length) {
+            this.map.fitBounds(bounds)
+        } else {
+            this.map.setView(CONFIG.map.center, CONFIG.map.zoom)
+        }
     }
 }
 

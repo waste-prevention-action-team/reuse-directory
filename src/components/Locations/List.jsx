@@ -19,6 +19,7 @@ const List = ({ locations, activeWPType, onSelectLocation }) => (
                             <Card
                                 key={Id}
                                 href="#"
+                                fluid
                                 header={Name}
                                 meta={Hours}
                                 description={Notes}

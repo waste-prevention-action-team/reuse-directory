@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Menu } from '../../semantic'
+import { Icon, Menu } from '../../semantic'
+import CONFIG from '../../config'
 
 const WPTypeMenu = ({ categories, activeCategoryIndex, onCategoryChange }) => (
     <Menu widths={categories.length} size="mini">
@@ -12,6 +13,7 @@ const WPTypeMenu = ({ categories, activeCategoryIndex, onCategoryChange }) => (
                     active={activeCategoryIndex === idx}
                     onClick={() => onCategoryChange(idx)}
                 >
+                    <Icon name={CONFIG.icons[category]} />
                     {category}
                 </Menu.Item>
             ))
