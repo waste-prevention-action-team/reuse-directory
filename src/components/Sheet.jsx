@@ -1,9 +1,9 @@
 import React from 'react'
-// import axios from 'axios'
+import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
 
 import CONFIG from '../config'
-import FIXTURES from '../fixtures'
+import loadScript from '../utils/loadScript'
 
 const SHEET_SCHEMA = CONFIG.google_sheet_schema
 
@@ -22,6 +22,7 @@ class Sheet extends React.Component {
         }
 
         this.data = {
+            raw: null,
             wpTypes: [],
             itemTypes: [],
             itemCategories: [],
@@ -32,31 +33,46 @@ class Sheet extends React.Component {
     }
 
     componentDidMount() {
-        this.processSheets(FIXTURES)
-        // const ranges = Object
-        //     .values(SHEET_SCHEMA)
-        //     .reduce((rangeQuery, { sheetName, columns }) => `${rangeQuery}&ranges='${sheetName}'!${columns}`, '')
-        // axios
-        //     .get(
-        //         encodeURI(
-        //             `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.google_sheet_id}/?key=${CONFIG.google_sheet_api_key}&fields=sheets(data.rowData.values(effectiveValue))${ranges}`
-        //         )
-        //     )
-        //     .then(response => this.processSheets(response.data.sheets))
-        //     .catch((error) => {
-        //         console.error(error)
-        //         this.setState({ dataStatus: 'error' })
-        //     })
+        // this.processSheets(FIXTURES)
+        loadScript(
+            'https://apis.google.com/js/api.js',
+            () => {
+                this.gapi = window.gapi
+                this.gapi.load('client', () => {
+                    this.gapi.client.init({
+                        apiKey: CONFIG.google_api_key,
+                        discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4']
+                    }).then(
+                        () => {
+                            this.gapi.client.sheets.spreadsheets.values.batchGet({
+                                spreadsheetId: CONFIG.google_sheet_id,
+                                ranges: Object.values(CONFIG.google_sheet_schema).map(
+                                    sheetConfig => `${sheetConfig.sheetName}!${sheetConfig.columns}`
+                                )
+                            }).then((response) => {
+                                this.data.raw = response.result.valueRanges
+                                this.processSheets()
+                            })
+                        },
+                        console.error
+                    )
+                })
+            }
+        )
     }
 
-    processSheets = (sheets) => {
-        const allCategories = sheets[SHEET_SCHEMA.categories.sheetIndex].data[0].rowData
-        const categoriesHeaders = ['wpTypes', 'itemTypes', 'itemCategories']
+    processSheets = () => {
+        const allCategories = this.data.raw.find(
+            ({ range }) => range.indexOf(SHEET_SCHEMA.categories.sheetName) >= 0
+        ).values
+        const categoriesHeaders = ['wpTypes', 'itemCategories']
+
+        // start from second row (idx === 1), first row only contains headers
         for (let i = 1; i < allCategories.length; i += 1) {
             categoriesHeaders.forEach((header, idx) => {
-                const a = allCategories[i].values[idx].effectiveValue
+                const a = allCategories[i][idx]
                 if (a) {
-                    this.data[header].push(a.stringValue)
+                    this.data[header].push(a)
                 }
             })
         }
@@ -64,24 +80,17 @@ class Sheet extends React.Component {
         const sheetNames = ['items', 'locations', 'relations']
         sheetNames.forEach((sheetName) => {
             const sheetConfig = SHEET_SCHEMA[sheetName]
-            const sheetData = sheets[sheetConfig.sheetIndex].data[0].rowData
-            const sheetAttrs = sheetData
-                .shift()
-                .values
-                .map(attr => attr.effectiveValue.stringValue)
+            const sheetData = this.data.raw.find(({ range }) => range.indexOf(sheetConfig.sheetName) >= 0).values
+            const sheetColumns = sheetData[0]
             this.data[sheetName] = sheetData
-                .filter(({ values }) => values)
-                .map(({ values }) => values.reduce(
-                    (mappedAttrs, value, idx) => {
-                        const attrName = sheetAttrs[idx]
-                        const attrValue = value.effectiveValue ?
-                            value.effectiveValue.stringValue || value.effectiveValue.numberValue :
-                            null
-                        mappedAttrs[attrName] = attrValue
-                        if (sheetConfig.searchableColumns.indexOf(idx) > -1 && attrValue) {
-                            mappedAttrs.searchText += `${attrValue.toString().toLowerCase()} `
+                .slice(1)
+                .map(values => values.reduce(
+                    (mappedColumns, value, idx) => {
+                        mappedColumns[sheetColumns[idx]] = value
+                        if (sheetConfig.searchableColumns.indexOf(idx) > -1 && value) {
+                            mappedColumns.searchText += `${value.toString().toLowerCase()} `
                         }
-                        return mappedAttrs
+                        return mappedColumns
                     },
                     {
                         searchText: ''
@@ -96,7 +105,7 @@ class Sheet extends React.Component {
         const { dataStatus } = this.state
         if (dataStatus === 'done') {
             return (
-                <SheetContext.Provider value={this.data}>
+                <SheetContext.Provider value={fromJS(this.data)}>
                     {this.props.children}
                 </SheetContext.Provider>
             )

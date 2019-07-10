@@ -1,20 +1,22 @@
 import React from 'react'
 
-import { Header, Image, Menu } from '../semantic'
+import { Header as SUIHeader, Image, Menu } from '../semantic'
 import logo from '../images/logo-small-wpat.jpg'
 
-export default () => (
+const Header = () => (
     <Menu id="Header" borderless>
         <Menu.Item header>
-            <Header as="h3">
+            <SUIHeader as="h3">
                 <Image src={logo} avatar />
                 ReUse Directory
-            </Header>
+            </SUIHeader>
         </Menu.Item>
         <Menu.Item position="right">
-            <Header as="h4">
+            <SUIHeader as="h4">
                 Benton County, OR
-            </Header>
+            </SUIHeader>
         </Menu.Item>
     </Menu>
 )
+
+export default Header

@@ -58,7 +58,7 @@ module.exports = {
                     {
                         loader: 'eslint-loader',
                         options: {
-                            emitWarning: MODE === '"development"'
+                            emitWarning: true
                         }
                     }
                 ]
