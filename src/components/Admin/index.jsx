@@ -154,18 +154,20 @@ class Admin extends React.Component {
 
         const relationsSchema = CONFIG.google_sheet_schema.relations
         const removedRelationsIndices = []
-        this.state.data
-            .find(
-                d => d.get('range').indexOf(relationsSchema.sheetName) >= 0
-            )
-            .get('values')
-            .valueSeq()
-            .forEach((v, idx) => {
-                if (v.get(relationsSchema.fk_maps[sheetConfig.sheetName]) === entryId) {
-                    ranges.push(`${relationsSchema.sheetName}!${this.getRange(relationsSchema.columns, idx + 1)}`)
-                    removedRelationsIndices.push(idx)
-                }
-            })
+        if (sheetConfig.sheetName !== 'Relations') {
+            this.state.data
+                .find(
+                    d => d.get('range').indexOf(relationsSchema.sheetName) >= 0
+                )
+                .get('values')
+                .valueSeq()
+                .forEach((v, idx) => {
+                    if (v.get(relationsSchema.fk_maps[sheetConfig.sheetName]) === entryId) {
+                        ranges.push(`${relationsSchema.sheetName}!${this.getRange(relationsSchema.columns, idx + 1)}`)
+                        removedRelationsIndices.push(idx)
+                    }
+                })
+        }
 
         this.gapi.client.sheets.spreadsheets.values
             .batchClear(
@@ -343,6 +345,114 @@ class Admin extends React.Component {
         )
     }
 
+    renderRelations = () => {
+        const sheetConfig = SHEET_SCHEMA.relations
+
+        const relations = this.state.data
+            .find(
+                d => d.get('range').indexOf(sheetConfig.sheetName) >= 0
+            )
+            .get('values')
+            .filter(row => row.get(0))
+
+        const columns = relations.get(0)
+        const columnsLength = columns.count()
+
+        const now = new Date()
+
+        const items = this.state.data
+            .find(
+                d => d.get('range').indexOf(SHEET_SCHEMA.items.sheetName) >= 0
+            )
+            .get('values')
+            .filter(row => row.get(0))
+        const itemOptions = items.map(item => ({
+            key: item.get(0),
+            value: item.get(0),
+            text: item.get(sheetConfig.fk_maps.Items)
+        })).toJS()
+
+        const locations = this.state.data
+            .find(
+                d => d.get('range').indexOf(SHEET_SCHEMA.locations.sheetName) >= 0
+            )
+            .get('values')
+            .filter(row => row.get(0))
+        const locationOptions = locations.map(item => ({
+            key: item.get(0),
+            value: item.get(0),
+            text: item.get(sheetConfig.fk_maps.Locations)
+        })).toJS()
+
+        const columnsInputTypes = {
+            Item: {
+                type: 'select',
+                extraProps: { options: itemOptions }
+            },
+            Location: {
+                type: 'select',
+                extraProps: { options: locationOptions }
+            },
+            Reuse: {
+                type: 'checkbox',
+                extraProps: {}
+            },
+            Repair: {
+                type: 'checkbox',
+                extraProps: {}
+            },
+            Recycle: {
+                type: 'checkbox',
+                extraProps: {}
+            },
+            Hazardous: {
+                type: 'checkbox',
+                extraProps: {}
+            },
+            Updated: { type: 'hidden', formula: `=DATE(${now.getFullYear()}, ${now.getMonth() + 1}, ${now.getDate()})` }
+        }
+
+        return (
+            <Table basic compact size="small">
+                <Table.Header>
+                    <Table.Row>
+                        {columns.map(header => (
+                            <Table.HeaderCell
+                                key={header}
+                                style={{
+                                    display: columnsInputTypes[header] && columnsInputTypes[header].type === 'hidden' ?
+                                        'none' : ''
+                                }}
+                            >
+                                {header}
+                            </Table.HeaderCell>
+                        ))}
+                        <Table.HeaderCell />
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {relations
+                        .skip(1)
+                        .push(ImmutableList().setSize(columnsLength))
+                        .map(location => (
+                            <RowForm
+                                key={`relations_${location.get(0) || 'new'}`}
+                                columns={columns}
+                                initialData={location.setSize(columnsLength)}
+                                columnsInputTypes={columnsInputTypes}
+                                handleAdd={
+                                    (data, successCallback) => this.handleAdd(sheetConfig, data, successCallback)
+                                }
+                                handleUpdate={data => this.handleUpdate(sheetConfig, data)}
+                                handleDelete={itemId => this.handleDelete(sheetConfig, itemId)}
+                            />
+                        ))
+                    }
+                </Table.Body>
+            </Table>
+        )
+    }
+
     render() {
         const { isAuthScriptReady, isSignedIn, signInError } = this.state
         return (
@@ -360,12 +470,16 @@ class Admin extends React.Component {
                                     {
                                         menuItem: 'Locations',
                                         render: () => <Tab.Pane>{this.renderLocations()}</Tab.Pane>
+                                    },
+                                    {
+                                        menuItem: 'Items/Locations',
+                                        render: () => <Tab.Pane>{this.renderRelations()}</Tab.Pane>
                                     }
                                 ]}
                             />
                         </Segment> :
-                        (
-                            signInError ?
+                        <React.Fragment>
+                            {signInError ?
                                 'Error signing in. Make sure you have the right permissions.' :
                                 <Button
                                     primary
@@ -374,7 +488,8 @@ class Admin extends React.Component {
                                     icon="google"
                                     onClick={this.signIn}
                                 />
-                        )
+                            }
+                        </React.Fragment>
                 }
             </div>
         )

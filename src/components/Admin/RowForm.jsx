@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import {
     Button,
+    Checkbox,
     Input,
     Select,
     Table
@@ -20,6 +21,7 @@ const InputField = ({
     const [didMount, updateMountStatus] = React.useState(false)
     if (formula) {
         React.useEffect(() => {
+            console.log(v, didMount)
             if (!didMount) {
                 updateMountStatus(true)
                 onChange(v)
@@ -31,7 +33,12 @@ const InputField = ({
             return <Select
                 {...extraProps}
                 value={v}
-                onChange={(e, props) => onChange(props.value)}
+                onChange={(e, fieldProps) => onChange(fieldProps.value)}
+            />
+        case 'checkbox':
+            return <Checkbox
+                checked={value === 'y'}
+                onChange={(e, fieldProps) => onChange(fieldProps.checked ? 'y' : '')}
             />
         case 'textarea':
             return <textarea
@@ -43,7 +50,7 @@ const InputField = ({
         default:
             return <Input
                 value={v}
-                onChange={(e, props) => onChange(props.value)}
+                onChange={(e, fieldProps) => onChange(fieldProps.value)}
             />
     }
 }
@@ -72,6 +79,7 @@ const RowForm = ({
     handleDelete
 }) => {
     const [data, updateData] = React.useState(initialData)
+    console.log(data.toJS())
     return (
         <Table.Row>
             <Table.Cell>

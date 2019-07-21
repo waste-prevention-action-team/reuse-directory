@@ -8,7 +8,7 @@ const Header = () => (
         <Menu.Item header>
             <SUIHeader as="h3">
                 <Image src={logo} avatar />
-                ReUse Directory
+                Waste Reduction Directory
             </SUIHeader>
         </Menu.Item>
         <Menu.Item position="right">
