@@ -7,7 +7,7 @@ import { SheetContext } from '../Sheet'
 import Locations from './Locations'
 import Props from './props'
 
-const Details = ({ item, onBack }) => (
+const Details = ({ item, onBack, categories }) => (
     <MapContext.Consumer>
         {map => (
             <SheetContext.Consumer>
@@ -35,6 +35,7 @@ const Details = ({ item, onBack }) => (
                                 locations={
                                     locations.filter(
                                         location => relations.filter(relation => (
+                                            (!categories.length || categories.some(category => relation[category] && relation[category] === 'y')) &&
                                             relation.Item === item.Id &&
                                             relation.Location === location.Id
                                         )).length
@@ -50,8 +51,13 @@ const Details = ({ item, onBack }) => (
 )
 
 Details.propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.string),
     item: Props.Item.isRequired,
     onBack: PropTypes.func.isRequired
+}
+
+Details.defaultProps = {
+    categories: []
 }
 
 export default Details

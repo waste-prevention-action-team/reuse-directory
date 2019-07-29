@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Grid, Responsive } from '../semantic'
+import { Grid, Responsive, Tab } from '../semantic'
 import Map, { MapContext } from './Map'
 import Items from './Items'
 import { SheetContext } from './Sheet'
@@ -10,8 +10,7 @@ const MOBILE_WIDTH = 1350
 class Content extends React.Component {
     state = {
         hasMap: false,
-        screenWidth: null,
-        activeCategoryIndex: 0
+        screenWidth: null
     }
 
     componentDidMount() {
@@ -48,11 +47,10 @@ class Content extends React.Component {
     }
 
     render() {
-        const { hasMap, activeCategoryIndex } = this.state
+        const { hasMap } = this.state
         return (
             <SheetContext.Consumer>
                 {(data) => {
-                    const wpTypes = data.get('wpTypes').toJS()
                     const items = data.get('items').toJS()
                     return (
                         <React.Fragment>
@@ -70,9 +68,33 @@ class Content extends React.Component {
                                                 <Grid style={{ height: '100%', margin: 0 }}>
                                                     <Grid.Row columns={1} style={{ height: 'calc(100% - 50px)' }}>
                                                         <Grid.Column style={{ height: '100%' }}>
-                                                            <Items
-                                                                items={items}
-                                                                activeWPType={wpTypes[activeCategoryIndex]}
+                                                            <Tab
+                                                                panes={[
+                                                                    {
+                                                                        menuItem: 'What do to?',
+                                                                        render: () => (
+                                                                            <Tab.Pane>
+                                                                                <Items items={items} />
+                                                                            </Tab.Pane>
+                                                                        )
+                                                                    },
+                                                                    {
+                                                                        menuItem: 'Find Repair Locations',
+                                                                        render: () => (
+                                                                            <Tab.Pane>
+                                                                                <Items items={items} categories={['Repair']} />
+                                                                            </Tab.Pane>
+                                                                        )
+                                                                    },
+                                                                    {
+                                                                        menuItem: 'Learn more',
+                                                                        render: () => (
+                                                                            <Tab.Pane>
+                                                                                Educational Stuff
+                                                                            </Tab.Pane>
+                                                                        )
+                                                                    }
+                                                                ]}
                                                             />
                                                         </Grid.Column>
                                                     </Grid.Row>
@@ -107,9 +129,33 @@ class Content extends React.Component {
                                     <Grid.Column style={{ height: '100%' }}>
                                         <MapContext.Provider value={this.map}>
                                             {hasMap ?
-                                                <Items
-                                                    items={items}
-                                                    activeWPType={wpTypes[activeCategoryIndex]}
+                                                <Tab
+                                                    panes={[
+                                                        {
+                                                            menuItem: 'What do to?',
+                                                            render: () => (
+                                                                <Tab.Pane>
+                                                                    <Items items={items} />
+                                                                </Tab.Pane>
+                                                            )
+                                                        },
+                                                        {
+                                                            menuItem: 'Find Repair Locations',
+                                                            render: () => (
+                                                                <Tab.Pane>
+                                                                    <Items items={items} categories={['Repair']} />
+                                                                </Tab.Pane>
+                                                            )
+                                                        },
+                                                        {
+                                                            menuItem: 'Learn more',
+                                                            render: () => (
+                                                                <Tab.Pane>
+                                                                    Educational Stuff
+                                                                </Tab.Pane>
+                                                            )
+                                                        }
+                                                    ]}
                                                 /> :
                                                 null
                                             }

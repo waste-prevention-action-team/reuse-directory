@@ -12,22 +12,11 @@ import {
 
 const InputField = ({
     type,
-    formula,
     extraProps,
     value,
     onChange
 }) => {
-    const v = formula || value || ''
-    const [didMount, updateMountStatus] = React.useState(false)
-    if (formula) {
-        React.useEffect(() => {
-            console.log(v, didMount)
-            if (!didMount) {
-                updateMountStatus(true)
-                onChange(v)
-            }
-        })
-    }
+    const v = value || ''
     switch (type) {
         case 'select':
             return <Select
@@ -57,7 +46,6 @@ const InputField = ({
 
 InputField.propTypes = {
     type: PropTypes.string,
-    formula: PropTypes.string,
     extraProps: PropTypes.shape({}),
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired
@@ -65,10 +53,17 @@ InputField.propTypes = {
 
 InputField.defaultProps = {
     type: null,
-    formula: null,
     extraProps: {},
     value: null
 }
+
+const prepareData = (columns, columnsInputTypes, data) => data.map((cellValue, idx) => {
+    const columnProps = columnsInputTypes[columns.get(idx)]
+    if (columnProps && columnProps.formula) {
+        return columnProps.formula
+    }
+    return cellValue
+})
 
 const RowForm = ({
     columns,
@@ -79,7 +74,6 @@ const RowForm = ({
     handleDelete
 }) => {
     const [data, updateData] = React.useState(initialData)
-    console.log(data.toJS())
     return (
         <Table.Row>
             <Table.Cell>
@@ -97,14 +91,18 @@ const RowForm = ({
             <Table.Cell>
                 {data.get(0) ?
                     <React.Fragment>
-                        <Button content="Update" primary onClick={() => handleUpdate(data)} />
+                        <Button
+                            content="Update"
+                            primary
+                            onClick={() => handleUpdate(prepareData(columns, columnsInputTypes, data))}
+                        />
                         <Button content="Delete" negative onClick={() => handleDelete(data.get(0))} />
                     </React.Fragment> :
                     <Button
                         content="Add"
                         primary
                         onClick={() => {
-                            handleAdd(data, () => { updateData(initialData) })
+                            handleAdd(prepareData(columns, columnsInputTypes, data), () => { updateData(initialData) })
                         }}
                     />
                 }

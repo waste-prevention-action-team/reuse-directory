@@ -35,7 +35,7 @@ const Locations = ({ itemId, locations }) => (
                         if (!annotatedLocations.length) {
                             return (
                                 <div>
-                                    <p>You can try another waste prevention category from the above menu.</p>
+                                    <p>There is no place that accepts your selected item.</p>
                                 </div>
                             )
                         }
