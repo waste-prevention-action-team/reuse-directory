@@ -45,11 +45,12 @@ class Map {
     )
 
     renderLocationPopupContent = ({
-        Name,
-        Hours,
+        Location,
         Address,
         Phone,
+        Website,
         Email,
+        Hours,
         Notes,
         wpTypes
     }) => {
@@ -59,12 +60,13 @@ class Map {
         return `
         <div class="ui fluid card">
             <div class="content">
-                <div class="header">${Name || ''}</div>
+                <div class="header">${Location || ''}</div>
                 <div class="meta">
-                    <div>${Hours || ''}</div>
-                    <div>${Address || ''}</div>
-                    <div>${Phone || ''}</div>
-                    <div>${Email || ''}</div>
+                    ${Address ? `<div><b>Address: </b>${Address}</div>` : ''}
+                    ${Phone ? `<div><b>Phone: </b>${Phone}</div>` : ''}
+                    ${Website ? `<div><b>Website: </b><a href=${Website} target="blank">${Website}</a></div>` : ''}
+                    ${Email ? `<div><b>Email: </b>${Email}</div>` : ''}
+                    ${Hours ? `<div><b>Hours: </b>${Hours}</div>` : ''}
                 </div>
                 <div class="description">${Notes || ''}</div>
             </div>

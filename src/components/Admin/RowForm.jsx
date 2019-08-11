@@ -21,6 +21,7 @@ const InputField = ({
         case 'select':
             return <Select
                 {...extraProps}
+                search
                 value={v}
                 onChange={(e, fieldProps) => onChange(fieldProps.value)}
             />

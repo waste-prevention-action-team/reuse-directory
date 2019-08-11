@@ -96,6 +96,13 @@ class Sheet extends React.Component {
                         searchText: ''
                     }
                 ))
+            const sortByColumn = sheetConfig.sortByColumn >= 0 && sheetColumns[sheetConfig.sortByColumn]
+            if (sortByColumn) {
+                this.data[sheetName].sort((v1, v2) => {
+                    return v1[sortByColumn].localeCompare(v2[sortByColumn])
+                })
+            }
+            
         })
 
         this.setState({ dataStatus: 'done' })

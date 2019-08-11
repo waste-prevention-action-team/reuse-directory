@@ -62,7 +62,7 @@ class Content extends React.Component {
                                 onUpdate={this.handleWidthUpdate}
                             >
                                 <Grid.Row style={{ padding: 0, height: '100%' }}>
-                                    <Grid.Column width={4} style={{ height: '100%' }}>
+                                    <Grid.Column width={5} style={{ height: '100%', overflowY: 'auto' }}>
                                         <MapContext.Provider value={this.map}>
                                             {hasMap ?
                                                 <Grid style={{ height: '100%', margin: 0 }}>
@@ -79,7 +79,7 @@ class Content extends React.Component {
                                                                         )
                                                                     },
                                                                     {
-                                                                        menuItem: 'Find Repair Locations',
+                                                                        menuItem: 'Unique ReUse Opportunities',
                                                                         render: () => (
                                                                             <Tab.Pane>
                                                                                 <Items items={items} categories={['Repair']} />
@@ -106,7 +106,7 @@ class Content extends React.Component {
                                     <Grid.Column
                                         id="Map"
                                         className="no-padding no-margin"
-                                        width={12}
+                                        width={11}
                                     />
                                 </Grid.Row>
                             </Responsive>
@@ -140,7 +140,7 @@ class Content extends React.Component {
                                                             )
                                                         },
                                                         {
-                                                            menuItem: 'Find Repair Locations',
+                                                            menuItem: 'Unique ReUse Opportunities',
                                                             render: () => (
                                                                 <Tab.Pane>
                                                                     <Items items={items} categories={['Repair']} />

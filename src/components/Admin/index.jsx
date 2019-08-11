@@ -378,10 +378,10 @@ class Admin extends React.Component {
             )
             .get('values')
             .filter(row => row.get(0))
-        const locationOptions = locations.map(item => ({
-            key: item.get(0),
-            value: item.get(0),
-            text: item.get(sheetConfig.fk_maps.Locations)
+        const locationOptions = locations.map(location => ({
+            key: location.get(0),
+            value: location.get(0),
+            text: location.get(sheetConfig.fk_maps.Locations)
         })).toJS()
 
         const columnsInputTypes = {

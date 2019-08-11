@@ -56,13 +56,14 @@ const Locations = ({ itemId, locations }) => (
                                     >
                                         <Card.Content>
                                             <Card.Header>
-                                                {location.Name}
+                                                {location.Location}
                                             </Card.Header>
                                             <Card.Meta>
-                                                <div>{location.Hours}</div>
-                                                <div>{location.Address}</div>
-                                                <div>{location.Phone}</div>
-                                                <div>{location.Email}</div>
+                                                {location.Address ? <div><b>Address: </b>{location.Address}</div> : null}
+                                                {location.Phone ? <div><b>Phone: </b>{location.Phone}</div> : null}
+                                                {location.Website ? <div><b>Website: </b><a href={location.Website} target="blank">{location.Website}</a></div> : null}
+                                                {location.Email ? <div><b>Email: </b>{location.Email}</div> : null}
+                                                {location.Hours ? <div><b>Hours: </b>{location.Hours}</div> : null}
                                             </Card.Meta>
                                             <Card.Description>
                                                 {location.Notes}
