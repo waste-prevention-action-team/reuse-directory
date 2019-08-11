@@ -10,7 +10,7 @@ const Items = ({ items, categories }) => {
     return (
         selectedItem ?
             <Details
-                item={items.find(item => item.Id === selectedItem)}
+                item={items.find((item) => item.Id === selectedItem)}
                 categories={categories}
                 onBack={() => setSelectedItem(null)}
             /> :

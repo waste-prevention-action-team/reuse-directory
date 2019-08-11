@@ -9,13 +9,13 @@ import Props from './props'
 
 const Details = ({ item, onBack, categories }) => (
     <MapContext.Consumer>
-        {map => (
+        {(map) => (
             <SheetContext.Consumer>
                 {(data) => {
                     const locations = data.get('locations').toJS()
                     const relations = data.get('relations').toJS()
                     return (
-                        <React.Fragment>
+                        <>
                             <Button
                                 content="Return to all items"
                                 icon="left chevron"
@@ -34,15 +34,15 @@ const Details = ({ item, onBack, categories }) => (
                                 itemId={item.Id}
                                 locations={
                                     locations.filter(
-                                        location => relations.filter(relation => (
-                                            (!categories.length || categories.some(category => relation[category] && relation[category] === 'y')) &&
+                                        (location) => relations.filter((relation) => (
+                                            (!categories.length || categories.some((category) => relation[category] && relation[category] === 'y')) &&
                                             relation.Item === item.Id &&
                                             relation.Location === location.Id
                                         )).length
                                     )
                                 }
                             />
-                        </React.Fragment>
+                        </>
                     )
                 }}
             </SheetContext.Consumer>

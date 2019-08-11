@@ -53,7 +53,7 @@ class Content extends React.Component {
                 {(data) => {
                     const items = data.get('items').toJS()
                     return (
-                        <React.Fragment>
+                        <>
                             <Responsive
                                 as={Grid}
                                 id="Content"
@@ -99,8 +99,7 @@ class Content extends React.Component {
                                                         </Grid.Column>
                                                     </Grid.Row>
                                                 </Grid> :
-                                                null
-                                            }
+                                                null}
                                         </MapContext.Provider>
                                     </Grid.Column>
                                     <Grid.Column
@@ -157,13 +156,12 @@ class Content extends React.Component {
                                                         }
                                                     ]}
                                                 /> :
-                                                null
-                                            }
+                                                null}
                                         </MapContext.Provider>
                                     </Grid.Column>
                                 </Grid.Row>
                             </Responsive>
-                        </React.Fragment>
+                        </>
                     )
                 }}
             </SheetContext.Consumer>

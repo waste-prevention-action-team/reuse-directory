@@ -31,7 +31,7 @@ class Map {
         this.map.remove()
     }
 
-    getMarkerIcon = color => (
+    getMarkerIcon = (color) => (
         L.icon({
             iconUrl: `data:image/svg+xml;base64,${btoa(markerImage.replace('currentColor', color))}`,
             shadowUrl: markerShadowImage,
@@ -54,7 +54,7 @@ class Map {
         Notes,
         wpTypes
     }) => {
-        const icons = wpTypes.map(wpType => (
+        const icons = wpTypes.map((wpType) => (
             `<i class="${CONFIG.icons[wpType].color} ${CONFIG.icons[wpType].name} circular inverted icon"></i>`
         ))
         return `

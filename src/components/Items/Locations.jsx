@@ -15,7 +15,7 @@ const Locations = ({ itemId, locations }) => (
             locations.forEach((location) => {
                 const annotatedLocation = { ...location }
                 const itemLocation = relations.find(
-                    relation => relation.Item === itemId && relation.Location === annotatedLocation.Id
+                    (relation) => relation.Item === itemId && relation.Location === annotatedLocation.Id
                 )
                 annotatedLocation.wpTypes = wpTypes.reduce(
                     (itemLocationWPTypes, wpType) => {
@@ -47,9 +47,10 @@ const Locations = ({ itemId, locations }) => (
                                 const marker = map.addLocationMaker(location)
                                 return (
                                     <Card
+                                        as="div"
                                         key={location.Id}
-                                        href="#"
                                         fluid
+                                        style={{ cursor: 'pointer' }}
                                         onClick={() => marker && marker.openPopup()}
                                         onMouseOver={() => marker && marker.setIcon(map.getMarkerIcon('green'))}
                                         onMouseOut={() => marker && marker.setIcon(map.getMarkerIcon('gold'))}
@@ -59,7 +60,11 @@ const Locations = ({ itemId, locations }) => (
                                                 {location.Location}
                                             </Card.Header>
                                             <Card.Meta>
-                                                {location.Address ? <div><b>Address: </b>{location.Address}</div> : null}
+                                                {
+                                                    location.Address ?
+                                                        <div><b>Address: </b>{location.Address}</div> :
+                                                        null
+                                                }
                                                 {location.Phone ? <div><b>Phone: </b>{location.Phone}</div> : null}
                                                 {location.Website ? <div><b>Website: </b><a href={location.Website} target="blank">{location.Website}</a></div> : null}
                                                 {location.Email ? <div><b>Email: </b>{location.Email}</div> : null}
@@ -70,7 +75,7 @@ const Locations = ({ itemId, locations }) => (
                                             </Card.Description>
                                         </Card.Content>
                                         <Card.Content extra textAlign="right">
-                                            {location.wpTypes.map(wpType => (
+                                            {location.wpTypes.map((wpType) => (
                                                 <Icon
                                                     key={wpType}
                                                     {...CONFIG.icons[wpType]}

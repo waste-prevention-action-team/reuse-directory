@@ -7,7 +7,7 @@ import Props from './props'
 const List = ({ items, onSelectItem }) => {
     const [searchTerm, setSearchTerm] = React.useState('')
     return (
-        <React.Fragment>
+        <>
             <Form>
                 <Form.Input
                     type="text"
@@ -22,7 +22,7 @@ const List = ({ items, onSelectItem }) => {
             <br />
             <Card.Group style={{ height: 'calc(100% - 50px)', overflowY: 'auto' }}>
                 {items
-                    .filter(item => item.Id && item.searchText.indexOf(searchTerm.toLowerCase()) >= 0)
+                    .filter((item) => item.Id && item.searchText.indexOf(searchTerm.toLowerCase()) >= 0)
                     .sort((item1, item2) => item1.Item > item2.Item)
                     .map(({
                         Id, Item, Category, Description
@@ -45,10 +45,9 @@ const List = ({ items, onSelectItem }) => {
                                 {Category}
                             </Card.Content>
                         </Card>
-                    ))
-                }
+                    ))}
             </Card.Group>
-        </React.Fragment>
+        </>
     )
 }
 

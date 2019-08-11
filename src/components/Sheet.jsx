@@ -14,12 +14,12 @@ class Sheet extends React.Component {
         children: PropTypes.node.isRequired
     }
 
+    state = {
+        dataStatus: 'pending'
+    }
+
     constructor(props) {
         super(props)
-
-        this.state = {
-            dataStatus: 'pending'
-        }
 
         this.data = {
             raw: null,
@@ -47,7 +47,7 @@ class Sheet extends React.Component {
                             this.gapi.client.sheets.spreadsheets.values.batchGet({
                                 spreadsheetId: CONFIG.google_sheet_id,
                                 ranges: Object.values(CONFIG.google_sheet_schema).map(
-                                    sheetConfig => `${sheetConfig.sheetName}!${sheetConfig.columns}`
+                                    (sheetConfig) => `${sheetConfig.sheetName}!${sheetConfig.columns}`
                                 )
                             }).then((response) => {
                                 this.data.raw = response.result.valueRanges
@@ -84,7 +84,7 @@ class Sheet extends React.Component {
             const sheetColumns = sheetData[0]
             this.data[sheetName] = sheetData
                 .slice(1)
-                .map(values => values.reduce(
+                .map((values) => values.reduce(
                     (mappedColumns, value, idx) => {
                         mappedColumns[sheetColumns[idx]] = value
                         if (sheetConfig.searchableColumns.indexOf(idx) > -1 && value) {
@@ -98,11 +98,8 @@ class Sheet extends React.Component {
                 ))
             const sortByColumn = sheetConfig.sortByColumn >= 0 && sheetColumns[sheetConfig.sortByColumn]
             if (sortByColumn) {
-                this.data[sheetName].sort((v1, v2) => {
-                    return v1[sortByColumn].localeCompare(v2[sortByColumn])
-                })
+                this.data[sheetName].sort((v1, v2) => v1[sortByColumn].localeCompare(v2[sortByColumn]))
             }
-            
         })
 
         this.setState({ dataStatus: 'done' })
