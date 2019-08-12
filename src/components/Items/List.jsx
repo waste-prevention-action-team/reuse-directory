@@ -23,7 +23,7 @@ const List = ({ items, onSelectItem }) => {
             <Card.Group style={{ height: 'calc(100% - 50px)', overflowY: 'auto' }}>
                 {items
                     .filter((item) => item.Id && item.searchText.indexOf(searchTerm.toLowerCase()) >= 0)
-                    .sort((item1, item2) => item1.Item > item2.Item)
+                    .sort((item1, item2) => item1.Item.localeCompare(item2.Item))
                     .map(({
                         Id, Item, Category, Description
                     }) => (
