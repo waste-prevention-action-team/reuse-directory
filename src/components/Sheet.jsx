@@ -98,7 +98,9 @@ class Sheet extends React.Component {
                 ))
             const sortByColumn = sheetConfig.sortByColumn >= 0 && sheetColumns[sheetConfig.sortByColumn]
             if (sortByColumn) {
-                this.data[sheetName].sort((v1, v2) => v1[sortByColumn].localeCompare(v2[sortByColumn]))
+                this.data[sheetName].sort(
+                    (v1, v2) => v1[sortByColumn] && v1[sortByColumn].localeCompare(v2[sortByColumn])
+                )
             }
         })
 
