@@ -31,7 +31,7 @@ const List = ({ items, onSelectItem }) => {
                             key={Id}
                             href="#"
                             fluid
-                            onClick={() => onSelectItem(Id)}
+                            onClick={() => onSelectItem(Id, Item)}
                         >
                             <Card.Content>
                                 <Card.Header>

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import analytics from '../../utils/analytics'
 import Props from './props'
 import Details from './Details'
 import List from './List'
@@ -14,7 +15,13 @@ const Items = ({ items, categories }) => {
                 categories={categories}
                 onBack={() => setSelectedItem(null)}
             /> :
-            <List items={items} onSelectItem={setSelectedItem} />
+            <List
+                items={items}
+                onSelectItem={(id, label) => {
+                    analytics('item', label)
+                    setSelectedItem(id)
+                }}
+            />
     )
 }
 

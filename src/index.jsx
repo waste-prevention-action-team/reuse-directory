@@ -10,6 +10,7 @@ import './style/base.less'
 
 if (CONFIG.google_analytics_key) {
     ReactGA.initialize(CONFIG.google_analytics_key)
+    ReactGA.pageview(window.location.pathname + window.location.search)
 }
 
 ReactDOM.render(

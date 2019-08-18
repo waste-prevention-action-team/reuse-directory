@@ -5,6 +5,7 @@ import { SheetContext } from '../Sheet'
 import { Card, Icon } from '../../semantic'
 import CONFIG from '../../config'
 import { MapContext } from '../Map'
+import analytics from '../../utils/analytics'
 
 const Locations = ({ itemId, locations }) => (
     <SheetContext.Consumer>
@@ -51,7 +52,10 @@ const Locations = ({ itemId, locations }) => (
                                         key={location.Id}
                                         fluid
                                         style={{ cursor: 'pointer' }}
-                                        onClick={() => marker && marker.openPopup()}
+                                        onClick={() => {
+                                            analytics('location', location.Location)
+                                            marker && marker.openPopup()
+                                        }}
                                         onMouseOver={() => marker && marker.setIcon(map.getMarkerIcon('green'))}
                                         onMouseOut={() => marker && marker.setIcon(map.getMarkerIcon('gold'))}
                                     >
