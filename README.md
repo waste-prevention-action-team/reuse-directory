@@ -4,6 +4,8 @@ A customizable directory of locations that reuse, recycle, or repair consumer go
 
 This app uses Google Sheet as data storage and can be served as a static website through services like Github Pages.
 
+![screenshot](docs/screenshot_a.png)
+
 ### Set Up
 
 Before starting development or serving your own directory, you need to set up a few things on Google API Console and Google Sheet.
