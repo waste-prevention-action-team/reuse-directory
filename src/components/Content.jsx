@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { Grid, Responsive, Tab } from '../semantic'
+import {
+    Button, Grid, Responsive, Tab
+} from '../semantic'
 import Map, { MapContext } from './Map'
 import Items from './Items'
 import { SheetContext } from './Sheet'
@@ -12,6 +14,8 @@ class Content extends React.Component {
         hasMap: false,
         screenWidth: null
     }
+
+    topElement = React.createRef()
 
     componentDidMount() {
         if (!this.state.hasMap) {
@@ -68,6 +72,7 @@ class Content extends React.Component {
                                                 <Grid style={{ height: '100%', margin: 0 }}>
                                                     <Grid.Row columns={1} style={{ height: 'calc(100% - 50px)' }}>
                                                         <Grid.Column style={{ height: '100%' }}>
+                                                            <div ref={this.topElement} />
                                                             <Tab
                                                                 panes={[
                                                                     {
@@ -95,6 +100,13 @@ class Content extends React.Component {
                                                                         )
                                                                     }
                                                                 ]}
+                                                            />
+                                                            <Button
+                                                                className="scrollUp"
+                                                                circular
+                                                                primary
+                                                                icon="arrow up"
+                                                                onClick={() => this.topElement.current.scrollIntoView()}
                                                             />
                                                         </Grid.Column>
                                                     </Grid.Row>

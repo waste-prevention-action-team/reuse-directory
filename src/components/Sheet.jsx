@@ -70,9 +70,9 @@ class Sheet extends React.Component {
         // start from second row (idx === 1), first row only contains headers
         for (let i = 1; i < allCategories.length; i += 1) {
             categoriesHeaders.forEach((header, idx) => {
-                const a = allCategories[i][idx]
-                if (a) {
-                    this.data[header].push(a)
+                const category = allCategories[i][idx]
+                if (category) {
+                    this.data[header].push(category)
                 }
             })
         }
