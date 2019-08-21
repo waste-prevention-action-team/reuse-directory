@@ -44252,7 +44252,7 @@ body,
   position: sticky;
   position: -webkit-sticky;
   bottom: 10px;
-  float: right;
+  left: 47%;
   z-index: 100;
 }
 #TabContent {
@@ -44272,4 +44272,4 @@ body,
 }
 
 
-/*# sourceMappingURL=../js/main-f55718797886a649b358.js.map*/
+/*# sourceMappingURL=../js/main-87fb17f108e0645eba96.js.map*/
