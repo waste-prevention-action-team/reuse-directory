@@ -4,6 +4,7 @@ import {
     Menu,
     Modal
 } from '../semantic'
+import About from './About'
 
 const Footer = () => (
     <Menu id="Footer" fixed="bottom" color="grey" inverted borderless>
@@ -17,11 +18,11 @@ const Footer = () => (
                 closeIcon
             >
                 <Modal.Header>
-                        About ReUse Directory
+                        The Waste Reduction Directory
                 </Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
-                            PLACEHOLDER
+                        <About />
                     </Modal.Description>
                 </Modal.Content>
             </Modal>

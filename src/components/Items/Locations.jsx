@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { SheetContext } from '../Sheet'
-import { Card, Icon } from '../../semantic'
+import { Button, Card, Icon } from '../../semantic'
 import CONFIG from '../../config'
 import { MapContext } from '../Map'
 import analytics from '../../utils/analytics'
@@ -10,6 +10,7 @@ import analytics from '../../utils/analytics'
 const Locations = ({ itemId, locations }) => (
     <SheetContext.Consumer>
         {(data) => {
+            const topElement = React.createRef()
             const wpTypes = data.get('wpTypes').toJS()
             const relations = data.get('relations').toJS()
             const annotatedLocations = []
@@ -93,7 +94,21 @@ const Locations = ({ itemId, locations }) => (
                                 )
                             })
                         map.zoomToMarkersBound()
-                        return renderedLocations
+                        return (
+                            <>
+                                <Card.Group>
+                                    <div ref={topElement} />
+                                    {renderedLocations}
+                                </Card.Group>
+                                <Button
+                                    className="scrollUp"
+                                    circular
+                                    primary
+                                    icon="arrow up"
+                                    onClick={() => topElement.current.scrollIntoView()}
+                                />
+                            </>
+                        )
                     }}
                 </MapContext.Consumer>
             )
