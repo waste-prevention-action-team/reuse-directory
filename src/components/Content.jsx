@@ -140,34 +140,44 @@ class Content extends React.Component {
                                     <Grid.Column style={{ height: '100%' }}>
                                         <MapContext.Provider value={this.map}>
                                             {hasMap ?
-                                                <Tab
-                                                    panes={[
-                                                        {
-                                                            menuItem: 'What do to?',
-                                                            render: () => (
-                                                                <Tab.Pane>
-                                                                    <Items items={items} />
-                                                                </Tab.Pane>
-                                                            )
-                                                        },
-                                                        {
-                                                            menuItem: 'Unique ReUse Opportunities',
-                                                            render: () => (
-                                                                <Tab.Pane>
-                                                                    <Items items={items} categories={['Repair']} />
-                                                                </Tab.Pane>
-                                                            )
-                                                        },
-                                                        {
-                                                            menuItem: 'Learn more',
-                                                            render: () => (
-                                                                <Tab.Pane>
-                                                                    Educational Stuff
-                                                                </Tab.Pane>
-                                                            )
-                                                        }
-                                                    ]}
-                                                /> :
+                                                <>
+                                                    <div ref={this.topElement} />
+                                                    <Tab
+                                                        panes={[
+                                                            {
+                                                                menuItem: 'What do to?',
+                                                                render: () => (
+                                                                    <Tab.Pane>
+                                                                        <Items items={items} />
+                                                                    </Tab.Pane>
+                                                                )
+                                                            },
+                                                            {
+                                                                menuItem: 'Unique ReUse Opportunities',
+                                                                render: () => (
+                                                                    <Tab.Pane>
+                                                                        <Items items={items} categories={['Repair']} />
+                                                                    </Tab.Pane>
+                                                                )
+                                                            },
+                                                            {
+                                                                menuItem: 'Learn more',
+                                                                render: () => (
+                                                                    <Tab.Pane>
+                                                                        Educational Stuff
+                                                                    </Tab.Pane>
+                                                                )
+                                                            }
+                                                        ]}
+                                                    />
+                                                    <Button
+                                                        className="scrollUp mobile"
+                                                        circular
+                                                        primary
+                                                        icon="arrow up"
+                                                        onClick={() => this.topElement.current.scrollIntoView()}
+                                                    />
+                                                </> :
                                                 null}
                                         </MapContext.Provider>
                                     </Grid.Column>
