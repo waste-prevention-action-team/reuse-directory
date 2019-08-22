@@ -24,6 +24,7 @@ class Map {
         }).addTo(this.map)
 
         this.markersLayer = L.featureGroup([]).addTo(this.map)
+        this.repairMarkersLayer = L.featureGroup([]).addTo(this.map)
     }
 
     destroy = () => {
@@ -52,7 +53,7 @@ class Map {
         Email,
         Hours,
         Notes,
-        wpTypes
+        wpTypes = []
     }) => {
         const icons = wpTypes.map((wpType) => (
             `<i class="${CONFIG.icons[wpType].color} ${CONFIG.icons[wpType].name} circular inverted icon"></i>`
@@ -77,13 +78,13 @@ class Map {
     `
     }
 
-    addLocationMaker = (location) => {
+    addLocationMaker = (location, markersGroup = this.markersLayer) => {
         if (location.LatLng) {
             const marker = L.marker(
                 location.LatLng.split(','),
                 { icon: this.getMarkerIcon('gold') }
             )
-            marker.addTo(this.markersLayer)
+            marker.addTo(markersGroup)
             marker.bindPopup(this.renderLocationPopupContent(location))
             return marker
         }

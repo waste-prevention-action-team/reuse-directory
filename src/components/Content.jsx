@@ -7,6 +7,7 @@ import {
 } from '../semantic'
 import Map, { MapContext } from './Map'
 import Items from './Items'
+import Repair from './Items/Repair'
 import Resources from './Resources'
 import { SheetContext } from './Sheet'
 
@@ -61,7 +62,7 @@ class Content extends React.Component {
         let tabContent
         switch (activeTab) {
             case 'repair':
-                tabContent = <Items items={this.context.get('items').toJS()} categories={['Repair']} />
+                tabContent = <Repair />
                 break
             case 'resources':
                 tabContent = <Resources />
