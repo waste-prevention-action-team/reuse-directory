@@ -121,7 +121,7 @@ class Content extends React.Component {
                 <Responsive
                     as={Grid}
                     id="Content"
-                    className="no-padding"
+                    className="no-padding mobile"
                     maxWidth={MOBILE_WIDTH}
                     fireOnMount
                     onUpdate={this.handleWidthUpdate}

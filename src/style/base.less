@@ -35,7 +35,7 @@ body,
   top: @header-height;
   height: ~"calc(100% - @{header-height})";
   width: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
 
   #Sidebar {
     height: 100%;
@@ -53,6 +53,12 @@ body,
 
   #MapColumn, #Map {
     height: 100%;
+  }
+
+  &.mobile {
+    #MapColumn {
+      height: 35%;
+    }
   }
 }
 
