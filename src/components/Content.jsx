@@ -1,7 +1,9 @@
 import React from 'react'
 
 import {
-    Grid, Menu, Responsive
+    Grid,
+    Menu,
+    Responsive
 } from '../semantic'
 import Map, { MapContext } from './Map'
 import Items from './Items'
@@ -70,20 +72,23 @@ class Content extends React.Component {
         }
         return (
             <>
-                <Menu widths={3} secondary pointing>
+                <Menu id="TabsMenu" widths={3} secondary pointing>
                     <Menu.Item
                         name="search"
                         active={activeTab === 'search'}
+                        content="Search"
                         onClick={this.handleTabChange}
                     />
                     <Menu.Item
                         name="repair"
                         active={activeTab === 'repair'}
+                        content="Repair"
                         onClick={this.handleTabChange}
                     />
                     <Menu.Item
                         name="resources"
                         active={activeTab === 'resources'}
+                        content="Unique Reuse Opportunities"
                         onClick={this.handleTabChange}
                     />
                 </Menu>
@@ -97,60 +102,38 @@ class Content extends React.Component {
     render() {
         const { hasMap } = this.state
         return (
-            <>
+            <MapContext.Provider value={this.map}>
                 <Responsive
                     as={Grid}
                     id="Content"
+                    className="no-padding"
                     minWidth={MOBILE_WIDTH + 1}
                     fireOnMount
                     onUpdate={this.handleWidthUpdate}
                 >
-                    <Grid.Row style={{ padding: 0, height: '100%' }}>
-                        <Grid.Column width={5} style={{ height: '100%', overflowY: 'auto' }}>
-                            <MapContext.Provider value={this.map}>
-                                {hasMap ?
-                                    <Grid style={{ height: '100%', margin: 0 }}>
-                                        <Grid.Row columns={1} style={{ height: 'calc(100% - 50px)' }}>
-                                            <Grid.Column style={{ height: '100%' }}>
-                                                {this.renderContent()}
-                                            </Grid.Column>
-                                        </Grid.Row>
-                                    </Grid> :
-                                    null}
-                            </MapContext.Provider>
-                        </Grid.Column>
-                        <Grid.Column
-                            id="Map"
-                            className="no-padding no-margin"
-                            width={11}
-                        />
-                    </Grid.Row>
+                    <Grid.Column id="Sidebar" width={5}>
+                        {hasMap && this.renderContent()}
+                    </Grid.Column>
+                    <Grid.Column id="MapColumn" className="no-padding no-margin" width={11}>
+                        <div id="Map" />
+                    </Grid.Column>
                 </Responsive>
                 <Responsive
                     as={Grid}
                     id="Content"
-                    className="mobile"
+                    className="no-padding"
                     maxWidth={MOBILE_WIDTH}
                     fireOnMount
                     onUpdate={this.handleWidthUpdate}
                 >
-                    <Grid.Row columns={1} style={{ height: 350 }}>
-                        <Grid.Column>
-                            <div
-                                id="Map"
-                                className="no-padding no-margin"
-                            />
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row columns={1} style={{ height: 'calc(100% - 400px)' }}>
-                        <Grid.Column style={{ height: '100%' }}>
-                            <MapContext.Provider value={this.map}>
-                                {hasMap ? this.renderContent() : null}
-                            </MapContext.Provider>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Grid.Column id="MapColumn" className="no-padding no-margin" width={16}>
+                        <div id="Map" />
+                    </Grid.Column>
+                    <Grid.Column id="Sidebar" width={16}>
+                        {hasMap && this.renderContent()}
+                    </Grid.Column>
                 </Responsive>
-            </>
+            </MapContext.Provider>
         )
     }
 }

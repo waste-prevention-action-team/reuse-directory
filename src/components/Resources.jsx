@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-    Button,
     Card,
     Icon,
     Image
@@ -11,20 +10,17 @@ import GreenGirl from '../images/green_girl.jpg'
 import LoveINC from '../images/love_inc.jpg'
 import RepairFair from '../images/repair_fair.jpg'
 
-const Resources = () => {
-    const topElement = React.createRef()
-    return (
+const Resources = () => (
         <>
             <p>
                 Three unique ReUse opportunities are available to the Corvallis Community
             </p>
-            <Card.Group>
-                <div ref={topElement} />
+            <Card.Group id="Cards">
                 <Card fluid>
-                    <Image src={GreenGirl} wrapped ui={false} />
                     <Card.Content>
                         <Card.Header>Green Girl</Card.Header>
                         <Card.Description>
+                            <Image src={GreenGirl} size="small" />
                             <p>
                                 Are you planning a birthday party for your child and don’t want to use your breakable
                                 dishes? Are you having a baby shower at your house and don’t have enough settings for a
@@ -57,10 +53,10 @@ const Resources = () => {
                     </Card.Content>
                 </Card>
                 <Card fluid>
-                    <Image src={RepairFair} wrapped ui={false} />
                     <Card.Content>
                         <Card.Header>OSU Repair Fairs Repair Fairs</Card.Header>
                         <Card.Description>
+                            <Image src={RepairFair} size="small" />
                             <p>
                                 <b>OSU Repair Fairs Repair Fairs</b> are an event series sponsored by the student group
                                 Waste Watchers, a group run by Campus Recycling. Details for each fair vary, so stay
@@ -94,9 +90,9 @@ const Resources = () => {
                     </Card.Content>
                 </Card>
                 <Card fluid>
-                    <Image src={LoveINC} wrapped ui={false} />
                     <Card.Content>
                         <Card.Header>Love INC Medical Shed</Card.Header>
+                        <Image src={LoveINC} size="small" />
                         <Card.Description>
                             <p>
                                 The Love INC Medical Shed is a joint ministry of several Benton County churches.
@@ -113,16 +109,9 @@ const Resources = () => {
                         </Card.Description>
                     </Card.Content>
                 </Card>
+                <div>&nbsp;</div>
             </Card.Group>
-            <Button
-                className="scrollUp"
-                circular
-                primary
-                icon="arrow up"
-                onClick={() => topElement.current.scrollIntoView()}
-            />
         </>
-    )
-}
+)
 
 export default Resources

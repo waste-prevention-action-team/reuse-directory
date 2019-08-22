@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
-    Button,
     Card,
     Form,
     Header
@@ -11,7 +10,6 @@ import { SheetContext } from '../Sheet'
 import Props from './props'
 
 const List = ({ items, onSelectItem }) => {
-    const topElement = React.createRef()
     const [searchTerm, setSearchTerm] = React.useState('')
     const [searchCategory, setSearchCategory] = React.useState('')
     return (
@@ -44,8 +42,7 @@ const List = ({ items, onSelectItem }) => {
                         />
                     </Form>
                     <br />
-                    <Card.Group>
-                        <div ref={topElement} />
+                    <Card.Group id="Cards">
                         {items
                             .filter((item) => (
                                 (!searchCategory || item.Category === searchCategory) &&
@@ -74,14 +71,8 @@ const List = ({ items, onSelectItem }) => {
                                     </Card.Content>
                                 </Card>
                             ))}
+                        <div>&nbsp;</div>
                     </Card.Group>
-                    <Button
-                        className="scrollUp"
-                        circular
-                        primary
-                        icon="arrow up"
-                        onClick={() => topElement.current.scrollIntoView()}
-                    />
                 </>
             )}
         </SheetContext.Consumer>

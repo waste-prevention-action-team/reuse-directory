@@ -1,93 +1,81 @@
 @import './semantic/semantic.less';
 
 @header-height: 55px;
-@footer-height: 40px;
 
 .no-border {
-    border: none !important;
-    box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .no-padding {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .no-margin {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 html,
 body,
 #App {
-    height: 100%;
-    width: 100%
+  height: 100%;
+  width: 100%
 }
 
 #Header {
-    height: @header-height;
-    border: none;
-    border-radius: 0;
-    background: rgb(73, 156, 26);
-    background: linear-gradient(90deg, rgba(73, 156, 26, 1) 0%, rgba(1, 111, 49, 1) 100%);
-    margin: 0;
-
-    &>* {
-        color: #fff !important;
-    }
-}
-
-#Footer {
-    height: @footer-height;
-    background: rgb(73, 156, 26);
-    background: linear-gradient(90deg, rgba(73, 156, 26, 1) 0%, rgba(1, 111, 49, 1) 100%);
-    z-index: 1000;
+  background: rgb(73, 156, 26);
+  background: linear-gradient(90deg, rgba(73, 156, 26, 1) 0%, rgba(1, 111, 49, 1) 100%);
+  height: @header-height;
+  z-index: 1000;
 }
 
 #Content {
-    margin: 0;
-    height: ~"calc(100% - @{header-height} - @{footer-height})";
-}
+  margin: 0;
+  position: absolute;
+  top: @header-height;
+  height: ~"calc(100% - @{header-height})";
+  width: 100%;
+  overflow-y: auto;
 
-#Map {
+  #Sidebar {
     height: 100%;
-}
-
-.button.scrollUp {
-    position: sticky;
-    position: -webkit-sticky;
-    bottom: 10px;
-    left: 47%;
-    z-index: 100;
-}
-
-
-#TabContent {
-    height: calc(100% - 50px);
     overflow-y: auto;
-    overflow-x: hidden;
-    padding: 10px;
+
+    #TabContent {
+      height: ~"calc(100% - 130px)";
+
+      #Cards {
+        height: ~"calc(100% - 75px)";
+        overflow-y: auto;
+      }
+    }
+  }
+
+  #MapColumn, #Map {
+    height: 100%;
+  }
 }
 
 .ui {
-    .icon {
-        &.biohazard {
-            &::before {
-                content: data-uri("image/svg+xml;base64", "../images/biohazard-solid.svg");
-            }
-        }
+  .icon {
+    &.biohazard {
+      &::before {
+        content: data-uri("image/svg+xml;base64", "../images/biohazard-solid.svg");
+      }
     }
+  }
 
-    table {
-        tr {
-            &.is-deleted {
-                font-style: italic;
-            }
-        }
+  table {
+    tr {
+      &.is-deleted {
+        font-style: italic;
+      }
     }
+  }
 }
 
 .leaflet-popup-pane {
-    .ui.card {
-        box-shadow: none;
-    }
+  .ui.card {
+    box-shadow: none;
+  }
 }
