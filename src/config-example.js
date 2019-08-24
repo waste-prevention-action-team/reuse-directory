@@ -3,6 +3,7 @@ const CONFIG = {
     google_analytics_key: '',
     google_api_key: '',
     google_sheet_id: '',
+    sentry_key: '',
     google_sheet_schema: {
         items: {
             sheetIndex: 0,
