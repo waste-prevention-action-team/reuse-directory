@@ -2,7 +2,7 @@ import '@babel/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
-import Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/browser'
 
 import CONFIG from './config'
 import App from './components/App'
