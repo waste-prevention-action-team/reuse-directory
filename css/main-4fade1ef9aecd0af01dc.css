@@ -36757,7 +36757,7 @@ body,
   background: #499c1a;
   background: linear-gradient(90deg, #499c1a 0%, #016f31 100%);
   height: 55px;
-  z-index: 1000;
+  z-index: 1001;
 }
 #Content {
   margin: 0;
@@ -36771,12 +36771,24 @@ body,
   height: 100%;
   overflow-y: auto;
 }
+#Content #Sidebar #TabMenu {
+  height: 55px;
+}
 #Content #Sidebar #TabContent {
-  height: calc(100% - 130px);
+  display: flex;
+  flex-flow: column;
+  height: calc(95% - 55px);
+}
+#Content #Sidebar #TabContent > * {
+  flex: 0 1 auto;
 }
 #Content #Sidebar #TabContent #Cards {
-  height: calc(100% - 75px);
+  flex: 1 1 auto;
+  margin-top: 30px;
   overflow-y: auto;
+}
+#Content #Sidebar #TabContent #Cards > *:last-child {
+  height: 250px;
 }
 #Content #MapColumn,
 #Content #Map {
@@ -36796,4 +36808,4 @@ body,
 }
 
 
-/*# sourceMappingURL=../js/main-657ad338b5386fffa962.js.map*/
+/*# sourceMappingURL=../js/main-4fade1ef9aecd0af01dc.js.map*/
