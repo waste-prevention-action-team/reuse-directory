@@ -1,6 +1,7 @@
 @import './semantic/semantic.less';
 
 @header-height: 55px;
+@tab-menu-height: 55px;
 
 .no-border {
   border: none !important;
@@ -26,7 +27,7 @@ body,
   background: rgb(73, 156, 26);
   background: linear-gradient(90deg, rgba(73, 156, 26, 1) 0%, rgba(1, 111, 49, 1) 100%);
   height: @header-height;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 #Content {
@@ -41,12 +42,27 @@ body,
     height: 100%;
     overflow-y: auto;
 
+    #TabMenu {
+      height: @tab-menu-height;
+    }
+
     #TabContent {
-      height: ~"calc(100% - 130px)";
+      display: flex;
+      flex-flow: column;
+      height: ~"calc(95% - @{tab-menu-height})";
+
+      & > * {
+        flex: 0 1 auto;
+      }
 
       #Cards {
-        height: ~"calc(100% - 75px)";
+        flex: 1 1 auto;
+        margin-top: 30px;
         overflow-y: auto;
+
+        & > *:last-child {
+          height: 250px;
+        }
       }
     }
   }

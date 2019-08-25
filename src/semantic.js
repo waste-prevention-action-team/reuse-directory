@@ -1,6 +1,7 @@
 export Accordion from 'semantic-ui-react/dist/es/modules/Accordion'
 export Button from 'semantic-ui-react/dist/es/elements/Button'
 export Card from 'semantic-ui-react/dist/es/views/Card'
+export Dropdown from 'semantic-ui-react/dist/es/modules/Dropdown'
 export Form from 'semantic-ui-react/dist/es/collections/Form'
 export Grid from 'semantic-ui-react/dist/es/collections/Grid'
 export Header from 'semantic-ui-react/dist/es/elements/Header'
