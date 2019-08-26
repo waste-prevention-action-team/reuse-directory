@@ -36784,7 +36784,7 @@ body,
 }
 #Content #Sidebar #TabContent #Cards {
   flex: 1 1 auto;
-  margin-top: 30px;
+  margin-top: 0;
   overflow-y: auto;
 }
 #Content #Sidebar #TabContent #Cards > *:last-child {
@@ -36793,6 +36793,9 @@ body,
 #Content #MapColumn,
 #Content #Map {
   height: 100%;
+}
+#Content.mobile #TabContent {
+  height: calc(95% - 4 * 55px) !important;
 }
 #Content.mobile #MapColumn {
   height: 25%;
@@ -36808,4 +36811,4 @@ body,
 }
 
 
-/*# sourceMappingURL=../js/main-1cccf81d65c1f42ec4f6.js.map*/
+/*# sourceMappingURL=../js/main-016ed05a6807bf4684e6.js.map*/
