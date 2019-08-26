@@ -57,7 +57,7 @@ body,
 
       #Cards {
         flex: 1 1 auto;
-        margin-top: 30px;
+        margin-top: 0;
         overflow-y: auto;
 
         & > *:last-child {
@@ -72,6 +72,10 @@ body,
   }
 
   &.mobile {
+    #TabContent {
+      height: ~"calc(95% - 4 * @{tab-menu-height})" !important;
+    }
+
     #MapColumn {
       height: 25%;
     }

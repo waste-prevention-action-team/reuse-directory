@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { Accordion, Card, List, Segment } from '../../semantic'
+import { Accordion, List, Segment } from '../../semantic'
 import { MapContext } from '../Map'
 import { SheetContext } from '../Sheet'
 import Items from '.'
-import analytics from '../../utils/analytics'
 
 class Repair extends React.Component {
     static contextType = MapContext

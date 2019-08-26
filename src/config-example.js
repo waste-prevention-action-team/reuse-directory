@@ -32,7 +32,7 @@ const CONFIG = {
         categories: {
             sheetIndex: 3,
             sheetName: 'Categories',
-            columns: 'A:B'
+            columns: 'A:C'
         },
         resources: {
             sheetIndex: 4,

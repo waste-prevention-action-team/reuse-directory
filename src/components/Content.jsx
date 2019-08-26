@@ -8,6 +8,7 @@ import {
 import Map, { MapContext } from './Map'
 import Header from './Header'
 import Items from './Items'
+import Category from './Items/Category'
 import Repair from './Items/Repair'
 import Resources from './Resources'
 import { SheetContext } from './Sheet'
@@ -20,7 +21,7 @@ class Content extends React.Component {
     state = {
         hasMap: false,
         screenWidth: null,
-        activeTab: 'search'
+        activeTab: 'search_item'
     }
 
     componentDidMount() {
@@ -62,23 +63,32 @@ class Content extends React.Component {
         const { activeTab } = this.state
         let tabContent
         switch (activeTab) {
+            case 'search_category':
+                tabContent = <Category />
+                break
             case 'repair':
                 tabContent = <Repair />
                 break
             case 'resources':
                 tabContent = <Resources />
                 break
-            case 'search':
+            case 'search_item':
             default:
                 tabContent = <Items items={this.context.get('items').toJS()} />
         }
         return (
             <>
-                <Menu id="TabsMenu" widths={3} secondary pointing>
+                <Menu id="TabsMenu" widths={4} secondary pointing size="tiny">
                     <Menu.Item
-                        name="search"
-                        active={activeTab === 'search'}
-                        content="Search"
+                        name="search_item"
+                        active={activeTab === 'search_item'}
+                        content="Search by Item"
+                        onClick={this.handleTabChange}
+                    />
+                    <Menu.Item
+                        name="search_category"
+                        active={activeTab === 'search_category'}
+                        content="Search by Category"
                         onClick={this.handleTabChange}
                     />
                     <Menu.Item

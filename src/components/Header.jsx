@@ -16,13 +16,13 @@ const Header = ({ mobile }) => (
         <Menu.Item header>
             <SUIHeader inverted>
                 <Image src={logo} avatar />
-                Waste Reduction Directory
+                <SUIHeader.Content>
+                    Waste Reduction Directory
+                    <SUIHeader.Subheader>Benton County, OR</SUIHeader.Subheader>
+                </SUIHeader.Content>
             </SUIHeader>
         </Menu.Item>
         <Menu.Menu position="right">
-            <Menu.Item header>
-                Benton County, OR
-            </Menu.Item>
             {mobile ?
                 <Menu.Item>
                     <Dropdown icon="bars">
@@ -61,8 +61,7 @@ const Header = ({ mobile }) => (
                             </Modal.Description>
                         </Modal.Content>
                     </Modal>
-                </>
-            }
+                </>}
         </Menu.Menu>
     </Menu>
 )

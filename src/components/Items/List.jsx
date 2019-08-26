@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 import {
     Card,
-    Form,
-    Header
+    Form
 } from '../../semantic'
 import { SheetContext } from '../Sheet'
 import Props from './props'
@@ -19,8 +18,7 @@ const List = ({ items, onSelectItem }) => {
                     <Form>
                         <Form.Input
                             type="text"
-                            label={<Header>Search for an Item</Header>}
-                            placeholder="Search"
+                            placeholder="Search for an Item"
                             icon="search"
                             fluid
                             value={searchTerm}
@@ -41,38 +39,39 @@ const List = ({ items, onSelectItem }) => {
                             onChange={(e, { value }) => setSearchCategory(value)}
                         />
                     </Form>
-                    <br />
-                    <Card.Group id="Cards">
-                        {items
-                            .filter((item) => (
-                                (!searchCategory || item.Category === searchCategory) &&
+                    {searchTerm || searchCategory ?
+                        <Card.Group id="Cards">
+                            {items
+                                .filter((item) => (
+                                    (!searchCategory || item.Category === searchCategory) &&
                                 (item.Id && item.searchText.indexOf(`${searchTerm.toLowerCase()}`)) >= 0
-                            ))
-                            .sort((item1, item2) => item1.Item.localeCompare(item2.Item))
-                            .map(({
-                                Id, Item, Category, Description
-                            }) => (
-                                <Card
-                                    key={Id}
-                                    href="#"
-                                    fluid
-                                    onClick={() => onSelectItem(Id, Item)}
-                                >
-                                    <Card.Content>
-                                        <Card.Header>
-                                            {Item}
-                                        </Card.Header>
-                                        <Card.Meta>
-                                            {Category}
-                                        </Card.Meta>
-                                        <Card.Description>
-                                            {Description}
-                                        </Card.Description>
-                                    </Card.Content>
-                                </Card>
-                            ))}
-                        <div>&nbsp;</div>
-                    </Card.Group>
+                                ))
+                                .sort((item1, item2) => item1.Item.localeCompare(item2.Item))
+                                .map(({
+                                    Id, Item, Category, Description
+                                }) => (
+                                    <Card
+                                        key={Id}
+                                        href="#"
+                                        fluid
+                                        onClick={() => onSelectItem(Id, Item)}
+                                    >
+                                        <Card.Content>
+                                            <Card.Header>
+                                                {Item}
+                                            </Card.Header>
+                                            <Card.Meta>
+                                                {Category}
+                                            </Card.Meta>
+                                            <Card.Description>
+                                                {Description}
+                                            </Card.Description>
+                                        </Card.Content>
+                                    </Card>
+                                ))}
+                            <div>&nbsp;</div>
+                        </Card.Group> :
+                        null}
                 </>
             )}
         </SheetContext.Consumer>

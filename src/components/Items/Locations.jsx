@@ -78,7 +78,7 @@ const Locations = ({ itemId, locations }) => (
                                                 {location.Notes}
                                             </Card.Description>
                                         </Card.Content>
-                                        <Card.Content extra textAlign="right">
+                                        <Card.Content extra>
                                             {location.wpTypes.map((wpType) => (
                                                 <Icon
                                                     key={wpType}
