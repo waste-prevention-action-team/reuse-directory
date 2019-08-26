@@ -11,60 +11,71 @@ import {
 import logo from '../images/logo-small-wpat.jpg'
 import About from './About'
 
-const Header = ({ mobile }) => (
-    <Menu id="Header" borderless fixed="top" inverted>
-        <Menu.Item header>
-            <SUIHeader inverted>
-                <Image src={logo} avatar />
-                <SUIHeader.Content>
-                    Waste Reduction Directory
-                    <SUIHeader.Subheader>Benton County, OR</SUIHeader.Subheader>
-                </SUIHeader.Content>
-            </SUIHeader>
-        </Menu.Item>
-        <Menu.Menu position="right">
-            {mobile ?
-                <Menu.Item>
-                    <Dropdown icon="bars">
-                        <Dropdown.Menu>
-                            <Dropdown.Item>Contact us</Dropdown.Item>
-                            <Modal
-                                trigger={<Dropdown.Item>About</Dropdown.Item>}
-                                size="small"
-                                closeIcon
-                            >
-                                <Modal.Header>
-                                The Waste Reduction Directory
-                                </Modal.Header>
-                                <Modal.Content>
-                                    <Modal.Description>
-                                        <About />
-                                    </Modal.Description>
-                                </Modal.Content>
-                            </Modal>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Menu.Item> :
-                <>
-                    <Menu.Item>Contact us</Menu.Item>
-                    <Modal
-                        trigger={<Menu.Item>About</Menu.Item>}
-                        size="small"
-                        closeIcon
-                    >
-                        <Modal.Header>
-                        The Waste Reduction Directory
-                        </Modal.Header>
-                        <Modal.Content>
-                            <Modal.Description>
-                                <About />
-                            </Modal.Description>
-                        </Modal.Content>
-                    </Modal>
-                </>}
-        </Menu.Menu>
-    </Menu>
-)
+const Header = ({ mobile }) => {
+    const [modalView, updateModalView] = React.useState(null)
+    let modalHeader
+    let modalContent
+    switch (modalView) {
+        case 'help':
+            modalHeader = 'Help'
+            modalContent = 'HELP TEXT PLACEHOLDER'
+            break
+        case 'about':
+            modalHeader = 'The Waste Reduction Directory'
+            modalContent = <About />
+            break
+        default:
+            modalHeader = ''
+            modalContent = ''
+    }
+    return (
+        <>
+            <Menu id="Header" borderless fixed="top" inverted>
+                <Menu.Item header>
+                    <SUIHeader inverted>
+                        <Image src={logo} avatar />
+                        <SUIHeader.Content>
+                            Waste Reduction Directory
+                            <SUIHeader.Subheader>Benton County, OR</SUIHeader.Subheader>
+                        </SUIHeader.Content>
+                    </SUIHeader>
+                </Menu.Item>
+                <Menu.Menu position="right">
+                    {mobile ?
+                        <Menu.Item>
+                            <Dropdown icon="bars">
+                                <Dropdown.Menu>
+                                    <Dropdown.Item>Contact us</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => updateModalView('help')}>Help</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => updateModalView('about')}>About</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Menu.Item> :
+                        <>
+                            <Menu.Item>Contact us</Menu.Item>
+                            <Menu.Item onClick={() => updateModalView('help')}>Help</Menu.Item>
+                            <Menu.Item onClick={() => updateModalView('about')}>About</Menu.Item>
+                        </>}
+                </Menu.Menu>
+            </Menu>
+            <Modal
+                open={!!modalView}
+                size="small"
+                closeIcon
+                onClose={() => updateModalView(null)}
+            >
+                <Modal.Header>
+                    {modalHeader}
+                </Modal.Header>
+                <Modal.Content>
+                    <Modal.Description>
+                        {modalContent}
+                    </Modal.Description>
+                </Modal.Content>
+            </Modal>
+        </>
+    )
+}
 
 Header.propTypes = {
     mobile: PropTypes.bool

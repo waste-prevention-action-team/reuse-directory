@@ -14,7 +14,7 @@ if (CONFIG.google_analytics_key) {
     ReactGA.pageview(window.location.pathname + window.location.search)
 }
 
-if (CONFIG.sentry_key) {
+if (process.env.NODE_ENV === '"production"' && CONFIG.sentry_key) {
     Sentry.init({ dsn: CONFIG.sentry_key })
 }
 
