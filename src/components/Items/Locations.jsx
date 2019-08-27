@@ -62,6 +62,17 @@ const Locations = ({ itemId, locations }) => (
                                         <Card.Content>
                                             <Card.Header>
                                                 {location.Location}
+                                                &nbsp;
+                                                {location.wpTypes.map((wpType) => (
+                                                    <Icon
+                                                        key={wpType}
+                                                        {...CONFIG.icons[wpType]}
+                                                        circular
+                                                        inverted
+                                                        size="tiny"
+                                                        title={wpType}
+                                                    />
+                                                ))}
                                             </Card.Header>
                                             <Card.Meta>
                                                 {
@@ -77,17 +88,6 @@ const Locations = ({ itemId, locations }) => (
                                             <Card.Description>
                                                 {location.Notes}
                                             </Card.Description>
-                                        </Card.Content>
-                                        <Card.Content extra>
-                                            {location.wpTypes.map((wpType) => (
-                                                <Icon
-                                                    key={wpType}
-                                                    {...CONFIG.icons[wpType]}
-                                                    circular
-                                                    inverted
-                                                    title={wpType}
-                                                />
-                                            ))}
                                         </Card.Content>
                                     </Card>
                                 )
