@@ -13,7 +13,7 @@ import RepairFair from '../images/repair_fair.jpg'
 const Resources = () => (
         <>
             <p>
-                Three unique ReUse opportunities are available to the Corvallis Community
+                Unique ReUse opportunities are available to the Corvallis Community
             </p>
             <Card.Group id="Cards">
                 <Card fluid>

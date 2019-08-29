@@ -13,7 +13,7 @@ import Repair from './Items/Repair'
 import Resources from './Resources'
 import { SheetContext } from './Sheet'
 
-const MOBILE_WIDTH = 1350
+const MOBILE_WIDTH = 850
 
 class Content extends React.Component {
     static contextType = SheetContext

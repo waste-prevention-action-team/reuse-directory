@@ -21,7 +21,7 @@ const Header = ({ mobile }) => {
             modalContent = 'HELP TEXT PLACEHOLDER'
             break
         case 'about':
-            modalHeader = 'The Waste Reduction Directory'
+            modalHeader = 'The Waste Prevention Directory'
             modalContent = <About />
             break
         default:
@@ -35,7 +35,7 @@ const Header = ({ mobile }) => {
                     <SUIHeader inverted>
                         <Image src={logo} avatar />
                         <SUIHeader.Content>
-                            Waste Reduction Directory
+                            Waste Prevention Directory
                             <SUIHeader.Subheader>Benton County, OR</SUIHeader.Subheader>
                         </SUIHeader.Content>
                     </SUIHeader>
