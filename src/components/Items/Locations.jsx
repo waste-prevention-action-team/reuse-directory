@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { SheetContext } from '../Sheet'
-import { Card, Icon } from '../../semantic'
+import { Card, Icon, Label } from '../../semantic'
 import CONFIG from '../../config'
 import { MapContext } from '../Map'
 import analytics from '../../utils/analytics'
@@ -95,6 +95,25 @@ const Locations = ({ itemId, locations }) => (
                         map.zoomToMarkersBound()
                         return (
                             <Card.Group id="Cards">
+                                <Card as="div" fluid>
+                                    <Card.Content>
+                                        <Card.Description>
+                                            {['Reuse', 'Recycle', 'Repair'].map(
+                                                (wpType) => (
+                                                    <Label key={wpType} image>
+                                                        <Icon
+                                                            {...CONFIG.icons[wpType]}
+                                                            circular
+                                                            inverted
+                                                            size="small"
+                                                        />
+                                                        {wpType}
+                                                    </Label>
+                                                )
+                                            )}
+                                        </Card.Description>
+                                    </Card.Content>
+                                </Card>
                                 {renderedLocations}
                                 <div>&nbsp;</div>
                             </Card.Group>
