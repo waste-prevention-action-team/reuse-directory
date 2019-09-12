@@ -36759,6 +36759,10 @@ body,
   height: 55px;
   z-index: 1001;
 }
+#Header .logo {
+  height: 50px;
+  width: auto;
+}
 #Content {
   margin: 0;
   position: absolute;
@@ -36811,4 +36815,4 @@ body,
 }
 
 
-/*# sourceMappingURL=../js/main-2cf183f626b00309fd24.js.map*/
+/*# sourceMappingURL=../js/main-ca6f50282279ce1fd556.js.map*/
