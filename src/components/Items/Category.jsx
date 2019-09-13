@@ -2,10 +2,12 @@ import React from 'react'
 
 import {
     Card,
-    Form
+    Form,
+    Icon,
+    Label
 } from '../../semantic'
+import CONFIG from '../../config'
 import { SheetContext } from '../Sheet'
-import analytics from '../../utils/analytics'
 import { MapContext } from '../Map'
 
 const Category = () => {
@@ -43,6 +45,25 @@ const Category = () => {
                     </Form>
                     {searchCategory ?
                         <Card.Group id="Cards">
+                            <Card as="div" fluid>
+                                <Card.Content>
+                                    <Card.Description>
+                                        {['Reuse', 'Recycle', 'Repair'].map(
+                                            (wpType) => (
+                                                <Label key={wpType} image>
+                                                    <Icon
+                                                        {...CONFIG.icons[wpType]}
+                                                        circular
+                                                        inverted
+                                                        size="small"
+                                                    />
+                                                    {wpType}
+                                                </Label>
+                                            )
+                                        )}
+                                    </Card.Description>
+                                </Card.Content>
+                            </Card>
                             {data
                                 .getIn([
                                     'locationCategories',
@@ -65,10 +86,6 @@ const Category = () => {
                                             key={location.Id}
                                             fluid
                                             style={{ cursor: 'pointer' }}
-                                            onClick={() => {
-                                                analytics('location', location.Location)
-                                                marker && marker.openPopup()
-                                            }}
                                             onMouseOver={
                                                 () => marker && marker.setIcon(map.getMarkerIcon('green'))
                                             }
@@ -79,6 +96,17 @@ const Category = () => {
                                             <Card.Content>
                                                 <Card.Header>
                                                     {location.Location}
+                                                    &nbsp;
+                                                    {location.allCategories.map((wpType) => (
+                                                        <Icon
+                                                            key={wpType}
+                                                            {...CONFIG.icons[wpType]}
+                                                            circular
+                                                            inverted
+                                                            size="tiny"
+                                                            title={wpType}
+                                                        />
+                                                    ))}
                                                 </Card.Header>
                                                 <Card.Meta>
                                                     {

@@ -8,7 +8,7 @@ import {
     Menu,
     Modal
 } from '../semantic'
-import logo from '../images/logo-small-wpat.jpg'
+import logo from '../images/logo-small-coalition.png'
 import About from './About'
 
 const Header = ({ mobile }) => {
@@ -33,10 +33,10 @@ const Header = ({ mobile }) => {
             <Menu id="Header" borderless fixed="top" inverted>
                 <Menu.Item header>
                     <SUIHeader inverted>
-                        <Image src={logo} avatar />
+                        <Image className="logo" src={logo} />
                         <SUIHeader.Content>
                             Waste Prevention Directory
-                            <SUIHeader.Subheader>Benton County, OR</SUIHeader.Subheader>
+                            <SUIHeader.Subheader>Corvallis and Surrounding Areas</SUIHeader.Subheader>
                         </SUIHeader.Content>
                     </SUIHeader>
                 </Menu.Item>

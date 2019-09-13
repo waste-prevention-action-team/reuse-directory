@@ -140,7 +140,7 @@ module.exports = {
             title: CONFIG.site_title
         }),
         new FaviconsWebpackPlugin({
-            logo: path.resolve('.', 'src', 'images', 'logo-small-wpat.jpg'),
+            logo: path.resolve('.', 'src', 'images', 'logo-small-coalition.png'),
             prefix: 'icons/',
             emitStats: false,
             inject: true

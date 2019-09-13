@@ -103,6 +103,24 @@ class Sheet extends React.Component {
             }
         })
 
+        this.data.locations.forEach((location) => {
+            const allCategories = new Set();
+            const relations = this.data.relations.filter(
+                (relation) => relation.Location === location.Id
+            )
+            for (let relation of relations) {
+                for (let category of this.data.wpTypes) {
+                    if (relation[category] === "y") {
+                        allCategories.add(category)
+                    }
+                }
+                if (allCategories.length === this.data.wpTypes.length) {
+                    break
+                }
+            }
+            location.allCategories = Array.from(allCategories)
+        })
+
         this.setState({ dataStatus: 'done' })
     }
 
