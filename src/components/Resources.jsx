@@ -23,12 +23,12 @@ const Resources = () => (
                             <Image src={GreenGirl} size="small" />
                             <p>
                                 Are you planning a birthday party for your child and don’t want to use your breakable
-                                dishes? Are you having a baby shower at your house and don’t have enough settings for a
-                                group of twenty five? The holidays are coming up, and maybe you don’t want to use paper
-                                plates and disposable products? Call Green Girl. I will supply you with clean,
-                                unbreakable, reusable earth friendly products to use for any and all occasions.
-                                Just give me a call and pick up your ready-to-go Green Girl Party Pack! It’s so easy
-                                to be green.
+                                dishes? Are you having a block party and don’t have enough settings for a group of 100?
+                                Holidays are great time to have a party and now you don’t have to use paper plates and
+                                disposable products! Call Green Girl. I will supply you with clean, unbreakable,
+                                reusable earth friendly products to use for any and all occasions, and for some
+                                supplies I can go as high as 400!! Just give me a call and pick up your ready-to-go
+                                Green Girl Party Pack! It’s so easy to be green.
                             </p>
                             <p>Call (541) 207-7924</p>
                             <p>
@@ -54,29 +54,44 @@ const Resources = () => (
                 </Card>
                 <Card fluid>
                     <Card.Content>
-                        <Card.Header>OSU Repair Fairs Repair Fairs</Card.Header>
+                        <Card.Header>OSU Repair Fairs</Card.Header>
                         <Card.Description>
                             <Image src={RepairFair} size="small" />
                             <p>
-                                <b>OSU Repair Fairs Repair Fairs</b> are an event series sponsored by the student group
-                                Waste Watchers, a group run by Campus Recycling. Details for each fair vary, so stay
-                                tuned to this page for information about upcoming fairs.
+                                OSU Repair Fairs occur about once a quarter and are an event series sponsored by the
+                                student group Waste Watchers, a group run by Campus Recycling.
+                                Details for each fair vary, so check the website (
+                                <a
+                                    href="https://fa.oregonstate.edu/recycling/events-and-opportunities/repair-fairs"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Icon name="external" />
+                                </a>
+                                ) or Facebook page (
+                                <a
+                                    href="https://www.facebook.com/events/surplus-property-oregon-state-university/repair-fair/345445452917753/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Icon name="facebook" />
+                                </a>
+                                ) for information about upcoming fairs.
                             </p>
                             <br />
                             <p>
-                                Why Repair Fairs?  We believe in providing a space that allows us to exchange ideas
-                                rather than dollars, developing people into fixers rather than consumers, and reusing
-                                materials rather than wasting them. We offer Repair Fairs to realize this vision.
-                                We believe you will benefit by:
+                                <b>Why Repair Fairs?</b> We believe in providing a space that allows us to exchange
+                                ideas rather than dollars, developing people into fixers rather than consumers,
+                                and reusing materials rather than wasting them. We offer Repair Fairs to realize this
+                                vision. We believe you will benefit by:
                             </p>
                             <br />
+
+
+
                             <p>Save Money: Score free repairs so you don’t have to buy more stuff.</p>
                             <p>Gain Skills: Connect with others to learn new skills or share your own.</p>
                             <p>Reduce Waste: Save your beloved belongings and conserve natural resources.</p>
-                            <br />
-                            <p>When: Wednesday, May 15, 2019, 5:30-7:30 p.m.</p>
-                            <p>Where: OSUsed Store, 644 SW 13th St.</p>
-                            <br />
                             <p>
                                 Bring your broken items and volunteers will help you learn how to repair your
                                 belongings, attend demos to learn more skills! Free and open to all.
