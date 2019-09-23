@@ -36747,6 +36747,9 @@ select.ui.dropdown {
 .no-margin {
   margin: 0 !important;
 }
+.right {
+  float: right;
+}
 html,
 body,
 #App {
@@ -36810,9 +36813,12 @@ body,
 .ui table tr.is-deleted {
   font-style: italic;
 }
+.ui.modals {
+  z-index: 1002;
+}
 .leaflet-popup-pane .ui.card {
   box-shadow: none;
 }
 
 
-/*# sourceMappingURL=../js/main-6eff3f5b46285a4ac05b.js.map*/
+/*# sourceMappingURL=../js/main-90fefbf1a1062c37d629.js.map*/
