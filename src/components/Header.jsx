@@ -10,6 +10,7 @@ import {
 } from '../semantic'
 import logo from '../images/logo-small-coalition.png'
 import About from './About'
+import Help from './Help'
 
 const Header = ({ mobile }) => {
     const [modalView, updateModalView] = React.useState(null)
@@ -17,8 +18,8 @@ const Header = ({ mobile }) => {
     let modalContent
     switch (modalView) {
         case 'help':
-            modalHeader = 'Help'
-            modalContent = 'HELP TEXT PLACEHOLDER'
+            modalHeader = 'How to use the Waste prevention directory'
+            modalContent = <Help />
             break
         case 'about':
             modalHeader = 'The Waste Prevention Directory'

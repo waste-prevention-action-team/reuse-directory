@@ -4,7 +4,9 @@ import {
     Card,
     Form,
     Icon,
-    Label
+    Label,
+    List,
+    Modal
 } from '../../semantic'
 import CONFIG from '../../config'
 import { SheetContext } from '../Sheet'
@@ -12,6 +14,7 @@ import { MapContext } from '../Map'
 
 const Category = () => {
     const [searchCategory, setSearchCategory] = React.useState('')
+    const [modalContent, updateModalContent] = React.useState(null)
     const map = React.useContext(MapContext)
     React.useEffect(() => () => map.markersLayer.clearLayers(), [])
     return (
@@ -137,6 +140,22 @@ const Category = () => {
                                                 </Card.Meta>
                                                 <Card.Description>
                                                     {location.Notes}
+                                                    <br />
+                                                    <a
+                                                        href="#"
+                                                        onClick={() => {
+                                                            updateModalContent({
+                                                                header: location.Location,
+                                                                data: data
+                                                                    .get('relations')
+                                                                    .filter(
+                                                                        (relation) => relation.get('Location') === location.Id
+                                                                    )
+                                                            })
+                                                        }}
+                                                    >
+                                                        Items accepted at this location
+                                                    </a>
                                                 </Card.Description>
                                             </Card.Content>
                                         </Card>
@@ -145,6 +164,36 @@ const Category = () => {
                             <div>&nbsp;</div>
                         </Card.Group> :
                         null}
+                    <Modal
+                        open={!!modalContent}
+                        size="small"
+                        closeIcon
+                        onClose={() => updateModalContent(null)}
+                    >
+                        {modalContent ?
+                            <>
+                                <Modal.Header>
+                                    {modalContent.header}
+                                </Modal.Header>
+                                <Modal.Content>
+                                    <Modal.Description>
+                                        <List>
+                                            {modalContent.data.map((relation) => (
+                                                <List.Item key={relation.get('Id')}>
+                                                    {data
+                                                        .get('items')
+                                                        .find((item) => item.get('Id') === relation.get('Item'))
+                                                        .get('Item')
+                                                    }
+                                                </List.Item>
+                                            ))}
+                                        </List>
+                                    </Modal.Description>
+                                </Modal.Content>
+                            </> :
+                            null
+                        }
+                    </Modal>
                 </>
             )}
         </SheetContext.Consumer>

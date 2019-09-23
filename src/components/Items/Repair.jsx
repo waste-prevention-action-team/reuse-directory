@@ -1,6 +1,12 @@
 import React from 'react'
 
-import { Accordion, List, Segment } from '../../semantic'
+import {
+    Accordion,
+    Icon,
+    List,
+    Modal,
+    Segment
+} from '../../semantic'
 import { MapContext } from '../Map'
 import { SheetContext } from '../Sheet'
 import Items from '.'
@@ -9,6 +15,8 @@ const Repair = () => {
     const map = React.useContext(MapContext)
     const data = React.useContext(SheetContext)
     React.useEffect(() => () => map.repairMarkersLayer.clearLayers(), [])
+
+    const [modalContent, updateModalContent] = React.useState(null)
 
     const repairLocationIds = data
         .get('relations')
@@ -31,6 +39,22 @@ const Repair = () => {
                     onMouseOut={() => marker && marker.setIcon(map.getMarkerIcon('blue'))}
                 >
                     {location.get('Location')}
+                    <Icon
+                        link
+                        name="list"
+                        className="right"
+                        title="Items accepted at this location"
+                        onClick={() => {
+                            updateModalContent({
+                                header: location.get('Location'),
+                                data: data
+                                    .get('relations')
+                                    .filter(
+                                        (relation) => relation.get('Location') === location.get('Id')
+                                    )
+                            })
+                        }}
+                    />
                 </List.Item>
             )
         })
@@ -55,9 +79,40 @@ const Repair = () => {
                             }
                         }]}
                 />
+                <Modal
+                    open={!!modalContent}
+                    size="small"
+                    closeIcon
+                    onClose={() => updateModalContent(null)}
+                >
+                    {modalContent ?
+                        <>
+                            <Modal.Header>
+                                {modalContent.header}
+                            </Modal.Header>
+                            <Modal.Content>
+                                <Modal.Description>
+                                    <List>
+                                        {modalContent.data.map((relation) => (
+                                            <List.Item key={relation.get('Id')}>
+                                                {data
+                                                    .get('items')
+                                                    .find((item) => item.get('Id') === relation.get('Item'))
+                                                    .get('Item')
+                                                }
+                                            </List.Item>
+                                        ))}
+                                    </List>
+                                </Modal.Description>
+                            </Modal.Content>
+                        </> :
+                        null
+                    }
+                </Modal>
             </Segment>
             <Items
-                items={data.get('items').toJS()}
+                items={data.get('items')
+                    .toJS()}
                 categories={['Repair']}
             />
         </>
