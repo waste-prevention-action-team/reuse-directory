@@ -12,6 +12,19 @@ import CONFIG from '../../config'
 import { SheetContext } from '../Sheet'
 import { MapContext } from '../Map'
 
+const renderItems = (relations, items) => {
+    const filteredItems = {}
+    relations.forEach((relation) => {
+        const itemName = items
+            .find((item) => item.get('Id') === relation.get('Item'))
+            .get('Item')
+        if (!filteredItems[itemName]) {
+            filteredItems[itemName] = <List.Item key={itemName}>{itemName}</List.Item>
+        }
+    })
+    return Object.values(filteredItems)
+}
+
 const Category = () => {
     const [searchCategory, setSearchCategory] = React.useState('')
     const [modalContent, updateModalContent] = React.useState(null)
@@ -149,7 +162,9 @@ const Category = () => {
                                                                 data: data
                                                                     .get('relations')
                                                                     .filter(
-                                                                        (relation) => relation.get('Location') === location.Id
+                                                                        (relation) => (
+                                                                            relation.get('Location') === location.Id
+                                                                        )
                                                                     )
                                                             })
                                                         }}
@@ -178,15 +193,7 @@ const Category = () => {
                                 <Modal.Content>
                                     <Modal.Description>
                                         <List>
-                                            {modalContent.data.map((relation) => (
-                                                <List.Item key={relation.get('Id')}>
-                                                    {data
-                                                        .get('items')
-                                                        .find((item) => item.get('Id') === relation.get('Item'))
-                                                        .get('Item')
-                                                    }
-                                                </List.Item>
-                                            ))}
+                                            {renderItems(modalContent.data, data.get('items'))}
                                         </List>
                                     </Modal.Description>
                                 </Modal.Content>
