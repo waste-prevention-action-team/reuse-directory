@@ -42,16 +42,20 @@ const Repair = () => {
                                 .get('relations')
                                 .filter(
                                     (relation) => relation.get('Location') === location.get('Id')
-                                ).map((relation) => (
-                                    <List.Item key={relation.get('Id')}>
-                                        {data
-                                            .get('items')
-                                            .find((item) => item.get('Id') === relation.get('Item'))
-                                            .get('Item')
-                                        }
-                                    </List.Item>
-                                ))
-                            }
+                                ).map((relation) => {
+                                    const item = data
+                                        .get('items')
+                                        .find((i) => i.get('Id') === relation.get('Item'))
+                                    if (item) {
+                                        return (
+                                            <List.Item key={relation.get('Id')}>
+                                                {item.get('Item')}
+                                            </List.Item>
+                                        )
+                                    }
+                                    console.error(`Missing: ${relation.get('Id')}`)
+                                    return null
+                                })}
                         </List.List>
                     </List.Description>
                 </List.Item>

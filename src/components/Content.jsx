@@ -16,6 +16,7 @@ import { SheetContext } from './Sheet'
 const MOBILE_WIDTH = 850
 
 class Content extends React.Component {
+    // eslint-disable-next-line
     static contextType = SheetContext
 
     state = {

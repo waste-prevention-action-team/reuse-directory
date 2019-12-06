@@ -122,6 +122,7 @@
         "react/jsx-wrap-multilines": "off",
         "react/jsx-uses-vars": 2,
         "react/jsx-uses-react": 2,
+        "react/state-in-constructor": "off",
         "react/static-property-placement": ["warn", "static public field"],
         "jsx-a11y/anchor-is-valid": "off",
         "jsx-a11y/click-events-have-key-events": "off",
