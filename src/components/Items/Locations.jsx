@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { SheetContext } from '../Sheet'
-import { Card, Icon, Label } from '../../semantic'
+import {
+    Card, Header, Icon, Label
+} from '../../semantic'
 import CONFIG from '../../config'
 import { MapContext } from '../Map'
 
@@ -93,19 +95,22 @@ const Locations = ({ itemId, locations }) => (
                                 <Card as="div" fluid>
                                     <Card.Content>
                                         <Card.Description>
-                                            {['Reuse', 'Recycle', 'Repair'].map(
-                                                (wpType) => (
-                                                    <Label key={wpType} image>
-                                                        <Icon
-                                                            {...CONFIG.icons[wpType]}
-                                                            circular
-                                                            inverted
-                                                            size="small"
-                                                        />
-                                                        {wpType}
-                                                    </Label>
-                                                )
-                                            )}
+                                            <Header style={{ float: 'left' }}>Legend:</Header>
+                                            <div style={{ float: 'right' }}>
+                                                {['Reuse', 'Recycle', 'Repair'].map(
+                                                    (wpType) => (
+                                                        <Label key={wpType} image>
+                                                            <Icon
+                                                                {...CONFIG.icons[wpType]}
+                                                                circular
+                                                                inverted
+                                                                size="small"
+                                                            />
+                                                            {wpType}
+                                                        </Label>
+                                                    )
+                                                )}
+                                            </div>
                                         </Card.Description>
                                     </Card.Content>
                                 </Card>

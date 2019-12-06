@@ -3,6 +3,7 @@ import React from 'react'
 import {
     Card,
     Form,
+    Header,
     Icon,
     Label,
     List,
@@ -81,19 +82,22 @@ const Category = () => {
                     <Card as="div" fluid>
                         <Card.Content>
                             <Card.Description>
-                                {['Reuse', 'Recycle', 'Repair'].map(
-                                    (wpType) => (
-                                        <Label key={wpType} image>
-                                            <Icon
-                                                {...CONFIG.icons[wpType]}
-                                                circular
-                                                inverted
-                                                size="small"
-                                            />
-                                            {wpType}
-                                        </Label>
-                                    )
-                                )}
+                                <Header style={{ float: 'left' }}>Legend:</Header>
+                                <div style={{ float: 'right' }}>
+                                    {['Reuse', 'Recycle', 'Repair'].map(
+                                        (wpType) => (
+                                            <Label key={wpType} image>
+                                                <Icon
+                                                    {...CONFIG.icons[wpType]}
+                                                    circular
+                                                    inverted
+                                                    size="small"
+                                                />
+                                                {wpType}
+                                            </Label>
+                                        )
+                                    )}
+                                </div>
                             </Card.Description>
                         </Card.Content>
                     </Card>
