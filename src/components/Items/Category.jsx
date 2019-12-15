@@ -16,18 +16,24 @@ import { MapContext } from '../Map'
 const renderItems = (relations, items) => {
     const filteredItems = {}
     const missingItems = []
-    relations.forEach((relation) => {
+    relations.forEach((relation, idx) => {
         const relationItem = items.find((item) => item.get('Id') === relation.get('Item'))
         if (relationItem) {
             const itemName = relationItem.get('Item')
             if (!filteredItems[itemName]) {
-                filteredItems[itemName] = <List.Item key={itemName}>{itemName}</List.Item>
+                filteredItems[itemName] = (
+                    <List.Item key={itemName}>
+                        {idx + 1} - {itemName}
+                    </List.Item>
+                )
             }
         } else {
             missingItems.push(relation.get('Id'))
         }
     })
-    console.error(`Missing: ${missingItems}`)
+    if (missingItems.length) {
+        console.error(`Missing: ${missingItems}`)
+    }
     return Object.values(filteredItems)
 }
 
@@ -78,121 +84,117 @@ const Category = () => {
                 />
             </Form>
             {searchCategory ?
-                <Card.Group id="Cards">
-                    <Card as="div" fluid>
-                        <Card.Content>
-                            <Card.Description>
-                                <Header style={{ float: 'left' }}>Legend:</Header>
-                                <div style={{ float: 'right' }}>
-                                    {['Reuse', 'Recycle', 'Repair'].map(
-                                        (wpType) => (
-                                            <Label key={wpType} image>
-                                                <Icon
-                                                    {...CONFIG.icons[wpType]}
-                                                    circular
-                                                    inverted
-                                                    size="small"
-                                                />
-                                                {wpType}
-                                            </Label>
-                                        )
-                                    )}
-                                </div>
-                            </Card.Description>
-                        </Card.Content>
-                    </Card>
-                    {locations ?
-                        locations
-                            .split(',')
-                            .map((locationId) => {
-                                const location = data
-                                    .get('locations')
-                                    .find((l) => l.get('Id') === locationId)
-                                    .toJS()
-                                const marker = map.addLocationMaker(location)
-                                return (
-                                    <Card
-                                        as="div"
-                                        key={location.Id}
-                                        fluid
-                                        style={{ cursor: 'pointer' }}
-                                        onMouseOver={
-                                            () => marker && marker.setIcon(map.getMarkerIcon('green'))
-                                        }
-                                        onMouseOut={
-                                            () => marker && marker.setIcon(map.getMarkerIcon('gold'))
-                                        }
-                                    >
-                                        <Card.Content>
-                                            <Card.Header>
-                                                {location.Location}
-                                                &nbsp;
-                                                {location.allCategories.map((wpType) => (
-                                                    <Icon
-                                                        key={wpType}
-                                                        {...CONFIG.icons[wpType]}
-                                                        circular
-                                                        inverted
-                                                        size="tiny"
-                                                        title={wpType}
-                                                    />
-                                                ))}
-                                            </Card.Header>
-                                            <Card.Meta>
-                                                {
-                                                    location.Address ?
-                                                        <div><b>Address: </b>{location.Address}</div> :
-                                                        null
-                                                }
-                                                {location.Phone ?
-                                                    <div><b>Phone: </b>{location.Phone}</div> :
-                                                    null}
-                                                {location.Website ?
-                                                    <div>
-                                                        <b>Website: </b>
-                                                        <a
-                                                            href={location.Website}
-                                                            target="blank"
-                                                        >
-                                                            {location.Website}
-                                                        </a>
-                                                    </div> :
-                                                    null}
-                                                {location.Email ?
-                                                    <div><b>Email: </b>{location.Email}</div> :
-                                                    null}
-                                                {location.Hours ?
-                                                    <div><b>Hours: </b>{location.Hours}</div> :
-                                                    null}
-                                            </Card.Meta>
-                                            <Card.Description>
-                                                {location.Notes}
-                                                <br />
-                                                <a
-                                                    href="#"
-                                                    onClick={() => {
-                                                        updateModalContent({
-                                                            header: location.Location,
-                                                            data: data
-                                                                .get('relations')
-                                                                .filter(
-                                                                    (relation) => (
-                                                                        relation.get('Location') === location.Id
+                <>
+                    <Header>
+                        Legend:
+                        {['Reuse', 'Recycle', 'Repair'].map(
+                            (wpType) => (
+                                <Label key={wpType} image>
+                                    <Icon
+                                        {...CONFIG.icons[wpType]}
+                                        circular
+                                        inverted
+                                        size="small"
+                                    />
+                                    {wpType}
+                                </Label>
+                            )
+                        )}
+                    </Header>
+                    <Card.Group id="Cards">
+                        {locations ?
+                            locations
+                                .split(',')
+                                .map((locationId) => {
+                                    const location = data
+                                        .get('locations')
+                                        .find((l) => l.get('Id') === locationId)
+                                        .toJS()
+                                    const marker = map.addLocationMaker(location)
+                                    return (
+                                        <Card
+                                            as="div"
+                                            key={location.Id}
+                                            fluid
+                                            style={{ cursor: 'pointer' }}
+                                            onMouseOver={
+                                                () => marker && marker.setIcon(map.getMarkerIcon('green'))
+                                            }
+                                            onMouseOut={
+                                                () => marker && marker.setIcon(map.getMarkerIcon('gold'))
+                                            }
+                                        >
+                                            <Card.Content>
+                                                <Card.Header>
+                                                    {location.Location}
+                                                    &nbsp;
+                                                    {location.allCategories.map((wpType) => (
+                                                        <Icon
+                                                            key={wpType}
+                                                            {...CONFIG.icons[wpType]}
+                                                            circular
+                                                            inverted
+                                                            size="tiny"
+                                                            title={wpType}
+                                                        />
+                                                    ))}
+                                                </Card.Header>
+                                                <Card.Meta>
+                                                    {
+                                                        location.Address ?
+                                                            <div><b>Address: </b>{location.Address}</div> :
+                                                            null
+                                                    }
+                                                    {location.Phone ?
+                                                        <div><b>Phone: </b>{location.Phone}</div> :
+                                                        null}
+                                                    {location.Website ?
+                                                        <div>
+                                                            <b>Website: </b>
+                                                            <a
+                                                                href={location.Website}
+                                                                target="blank"
+                                                            >
+                                                                {location.Website}
+                                                            </a>
+                                                        </div> :
+                                                        null}
+                                                    {location.Email ?
+                                                        <div><b>Email: </b>{location.Email}</div> :
+                                                        null}
+                                                    {location.Hours ?
+                                                        <div><b>Hours: </b>{location.Hours}</div> :
+                                                        null}
+                                                </Card.Meta>
+                                                <Card.Description>
+                                                    {location.Notes}
+                                                    <br />
+                                                    <a
+                                                        href="#"
+                                                        onClick={() => {
+                                                            updateModalContent({
+                                                                header: location.Location,
+                                                                data: data
+                                                                    .get('relations')
+                                                                    .filter(
+                                                                        (relation) => (
+                                                                            relation.get('Location') === location.Id
+                                                                        )
                                                                     )
-                                                                )
-                                                        })
-                                                    }}
-                                                >
-                                                    Items accepted at this location
-                                                </a>
-                                            </Card.Description>
-                                        </Card.Content>
-                                    </Card>
-                                )
-                            }) :
-                        'No location accepts this category'}
-                    <div>&nbsp;</div>
-                </Card.Group> :
+                                                            })
+                                                        }}
+                                                    >
+                                                        Items accepted at this location
+                                                    </a>
+                                                </Card.Description>
+                                            </Card.Content>
+                                        </Card>
+                                    )
+                                }) :
+                            'No location accepts this category'}
+                        <div>&nbsp;</div>
+                    </Card.Group>
+                </> :
                 null}
             <Modal
                 open={!!modalContent}

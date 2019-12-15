@@ -1,5 +1,5 @@
 const CONFIG = {
-    site_title: 'Reuse Directory',
+    site_title: 'ReUse Directory',
     google_analytics_key: '',
     google_api_key: '',
     google_sheet_id: '',

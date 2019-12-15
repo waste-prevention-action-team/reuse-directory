@@ -16,21 +16,27 @@ const Details = ({ item, onBack, categories }) => (
                     const relations = data.get('relations').toJS()
                     return (
                         <>
-                            <div>
+                            <Segment
+                                basic
+                                compact
+                                style={{ padding: 0, width: '100%' }}
+                            >
+                                <div style={{ float: 'left' }}>
+                                    <Header content={item.Item} subheader={item.Category} />
+                                    <div>
+                                        {item.Description}
+                                    </div>
+                                </div>
                                 <Button
                                     content="Return to all items"
                                     icon="left chevron"
+                                    size="mini"
+                                    style={{ float: 'right' }}
                                     onClick={() => {
                                         map.markersLayer.clearLayers()
                                         onBack()
                                     }}
                                 />
-                            </div>
-                            <Segment basic>
-                                <Header content={item.Item} subheader={item.Category} />
-                                <div>
-                                    {item.Description}
-                                </div>
                             </Segment>
                             <Locations
                                 itemId={item.Id}

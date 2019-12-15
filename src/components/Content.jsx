@@ -101,7 +101,7 @@ class Content extends React.Component {
                     <Menu.Item
                         name="resources"
                         active={activeTab === 'resources'}
-                        content="Unique Reuse Opportunities"
+                        content="Unique ReUse Opportunities"
                         onClick={this.handleTabChange}
                     />
                 </Menu>
@@ -138,7 +138,6 @@ class Content extends React.Component {
                     fireOnMount
                     onUpdate={this.handleWidthUpdate}
                 >
-                    <Header mobile />
                     <Grid id="Content" className="no-padding mobile">
                         <Grid.Column id="MapColumn" className="no-padding no-margin" width={16}>
                             <div id="Map" />

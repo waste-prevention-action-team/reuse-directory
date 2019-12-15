@@ -6,7 +6,7 @@ const Help = () => (
     <Segment basic>
         <div>
             There are four tabs across the left upper side of the screen that include: “Search by Item”, Search by
-            Category”, “Repair”, and “Unique Reuse Opportunities”.
+            Category”, “Repair”, and “Unique ReUse Opportunities”.
         </div>
         <Header as="h3">
             How to search for an item for Reuse, Recycle, or Repair:

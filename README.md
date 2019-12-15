@@ -1,4 +1,4 @@
-## Reuse Directory
+## ReUse Directory
 
 A customizable directory of locations that reuse, recycle, or repair consumer goods.
 
