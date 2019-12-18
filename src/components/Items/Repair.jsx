@@ -41,7 +41,7 @@ const Repair = () => {
                             {data
                                 .get('relations')
                                 .filter(
-                                    (relation) => relation.get('Location') === location.get('Id')
+                                    (relation) => relation.get('Repair') === 'y' && relation.get('Location') === location.get('Id')
                                 ).map((relation) => {
                                     const item = data
                                         .get('items')
