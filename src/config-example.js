@@ -32,12 +32,13 @@ const CONFIG = {
         categories: {
             sheetIndex: 3,
             sheetName: 'Categories',
-            columns: 'A:C'
+            columns: 'A:B'
         },
         resources: {
             sheetIndex: 4,
             sheetName: 'Resources',
-            columns: 'A:C'
+            columns: 'A:C',
+            searchableColumns: []
         }
     },
     icons: {

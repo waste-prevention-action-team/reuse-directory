@@ -23,7 +23,12 @@ class Sheet extends React.Component {
 
         this.data = {
             raw: null,
-            wpTypes: [],
+            wpTypes: [
+                'Reuse',
+                'Recycle',
+                'Repair',
+                'Hazardous'
+            ],
             itemTypes: [],
             itemCategories: [],
             items: [],
@@ -66,7 +71,7 @@ class Sheet extends React.Component {
         const allCategories = this.data.raw.find(
             ({ range }) => range.indexOf(SHEET_SCHEMA.categories.sheetName) >= 0
         ).values
-        const categoriesHeaders = ['wpTypes', 'itemCategories', 'locationCategories']
+        const categoriesHeaders = ['itemCategories', 'locationCategories']
 
         // start from second row (idx === 1), first row only contains headers
         for (let i = 1; i < allCategories.length; i += 1) {
