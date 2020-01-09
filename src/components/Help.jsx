@@ -4,45 +4,75 @@ import { Header, List, Segment } from '../semantic'
 
 const Help = () => (
     <Segment basic>
+        <Header as="h3">
+            How to use the Waste prevention directory
+        </Header>
         <div>
-            There are four tabs across the left upper side of the screen that include: “Search by Item”, Search by
-            Category”, “Repair”, and “Unique ReUse Opportunities”.
+            You will find four tabs across the top: Search by Item, Search by Category, Repair,
+            and Unique Reuse Opportunities.
         </div>
         <Header as="h3">
             How to search for an item for Reuse, Recycle, or Repair:
         </Header>
         <List ordered>
             <List.Item>
-                1. Click on “Search by item” and type in the name of the item you are searching for in the box.
+                Click on “Search by Item” and in the box, type in the item you are searching for.
             </List.Item>
             <List.Item>
-                2. If your search is successful then it will a show the locations of all the businesses on a map and a
-                short description (that includes the address, phone number, and website if available) of
-                businesses that might take your item. The next step is to call the business to make sure they will
-                take your item.
+                If search is successful, all locations accepting that item are listed*, each also appearing on a map
+                with the location&#39;s contact info. For each business you can click on
+                “Items accepted at this location” to verify what items the business takes. The next step is to call
+                a location to confirm your item is currently being accepted.
             </List.Item>
             <List.Item>
-                3. If there are no results then the next step is to click on “Search by Category”, click on the drop
-                down menu, and select a category that you think might contain your item.
+                If there are no results, click on “Search by Category” and look through the drop-down menu for a
+                category likely to contain your item.
             </List.Item>
             <List.Item>
-                4. For example: If I search for pillows and no results appear I would then select a category from the
-                drop down menu that will likely include the item, pillows. I choose the category bedding /bath
-                which seems a likely category and the results show a map and a short description (that includes
-                the address, phone number, and website if available) of 17 businesses that might take pillows.
-                The next step is to call the business and ask them if they take pillows.
+                For example: If I search for pillows and no results appear*, I would select a likely category from
+                the drop-down menu such as bedding/bath. Results then show a list and map of locations that may accept
+                pillows. The next step is to call a location to confirm if pillows are currently being accepted.
             </List.Item>
         </List>
-        <Header as="h3">The “Repair” tab:</Header>
+        <Header as="h3">
+            How to search for locations to bring items for Repair:
+        </Header>
+        <List ordered>
+            <List.Item>
+                1. Click on &quot;Repair&quot; at the top.
+            </List.Item>
+            <List.Item>
+                2. Click on &quot;See list of all repair places&quot; drop-down menu for a list of locations and
+                what items they repair.
+            </List.Item>
+            <List.Item>
+                3. Click a location name for contact information a map location.
+            </List.Item>
+        </List>
+        <Header as="h3">
+            Unique Reuse Opportunities
+        </Header>
         <div>
-            If you click on the Repair tab it shows a list of businesses or organizations and what items they
-            repair.
+            Scroll for a number of local Reuse Opportunities that are unusual but well-vetted. For example,
+            Green Girl can supply you with dinnerware, free of charge, for your event.
         </div>
-        <Header as="h3">Unique Reuse Opportunities</Header>
+        <Header as="h4">
+            *TIP FOR ANDROID USERS:
+        </Header>
         <div>
-            Shows a number of Reuse Opportunities that are unusual which people should take advantage
-            of. For example Green Girl will supply you with dinnerware free of charge for large groups.
+            When searching by item, after clicking &quot;search&quot; click elsewhere on the screen to minimize your
+            keyboard to see locations list.
         </div>
+        <Header as="h4">
+            *TIP FOR iPHONE USERS:
+        </Header>
+        <div>
+            When searching by item, after clicking &quot;search&quot; click &quot;done&quot; to minimize your keyboard
+            to see locations list.
+        </div>
+        <Header as="h5">
+            NOTE: This site functions best via PC or Mac. We hope to have it be more mobile-friendly in the future.
+        </Header>
     </Segment>
 )
 

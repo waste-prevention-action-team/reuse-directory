@@ -10,6 +10,7 @@ import {
 } from '../semantic'
 import logo from '../images/logo-small-coalition.png'
 import About from './About'
+import Contact from './Contact'
 import Help from './Help'
 
 const Header = ({ mobile }) => {
@@ -24,6 +25,10 @@ const Header = ({ mobile }) => {
         case 'about':
             modalHeader = 'The Waste Prevention Directory'
             modalContent = <About />
+            break
+        case 'contact':
+            modalHeader = 'Contact'
+            modalContent = <Contact />
             break
         default:
             modalHeader = ''
@@ -46,14 +51,14 @@ const Header = ({ mobile }) => {
                         <Menu.Item>
                             <Dropdown icon="bars">
                                 <Dropdown.Menu>
-                                    <Dropdown.Item>Contact us</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => updateModalView('contact')}>Contact us</Dropdown.Item>
                                     <Dropdown.Item onClick={() => updateModalView('help')}>Help</Dropdown.Item>
                                     <Dropdown.Item onClick={() => updateModalView('about')}>About</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Menu.Item> :
                         <>
-                            <Menu.Item>Contact us</Menu.Item>
+                            <Menu.Item onClick={() => updateModalView('contact')}>Contact us</Menu.Item>
                             <Menu.Item onClick={() => updateModalView('help')}>Help</Menu.Item>
                             <Menu.Item onClick={() => updateModalView('about')}>About</Menu.Item>
                         </>}
