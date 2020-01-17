@@ -39,10 +39,15 @@ const renderItems = (relations, items) => {
 
 const Category = () => {
     const data = React.useContext(SheetContext)
+    const cardGroupTopRef = React.useRef(null)
     const [searchCategory, setSearchCategory] = React.useState('')
     const [modalContent, updateModalContent] = React.useState(null)
     const map = React.useContext(MapContext)
     React.useEffect(() => () => map.markersLayer.clearLayers(), [])
+
+    if (cardGroupTopRef.current) {
+        cardGroupTopRef.current.scrollIntoView()
+    }
 
     const locations = data
         .getIn([
@@ -102,6 +107,7 @@ const Category = () => {
                         )}
                     </Header>
                     <Card.Group id="Cards">
+                        <div ref={cardGroupTopRef} />
                         {locations ?
                             locations
                                 .split(',')
