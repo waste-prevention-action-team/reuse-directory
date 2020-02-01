@@ -34,7 +34,9 @@ const renderItems = (relations, items) => {
     if (missingItems.length) {
         console.error(`Missing: ${missingItems}`)
     }
-    return Object.values(filteredItems)
+    return Object
+        .entries(filteredItems).sort((item1, item2) => item1[0].localeCompare(item2[0]))
+        .map(([, item]) => item)
 }
 
 const Category = () => {
@@ -49,7 +51,7 @@ const Category = () => {
         cardGroupTopRef.current.scrollIntoView()
     }
 
-    const locations = data
+    let locations = data
         .getIn([
             'locationCategories',
             data
@@ -58,6 +60,17 @@ const Category = () => {
                     (category) => ((!searchCategory || category === searchCategory))
                 )
         ])
+    if (locations) {
+        locations = locations
+            .split(',')
+            .map((locationId) => data
+                .get('locations')
+                .find((l) => l.get('Id') === locationId)
+                .toJS())
+            .sort((location1, location2) => location1.Location.localeCompare(location2.Location))
+    } else {
+        locations = []
+    }
 
     return (
 
@@ -110,12 +123,7 @@ const Category = () => {
                         <div ref={cardGroupTopRef} />
                         {locations ?
                             locations
-                                .split(',')
-                                .map((locationId) => {
-                                    const location = data
-                                        .get('locations')
-                                        .find((l) => l.get('Id') === locationId)
-                                        .toJS()
+                                .map((location) => {
                                     const marker = map.addLocationMaker(location)
                                     return (
                                         <Card

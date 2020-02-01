@@ -81,7 +81,7 @@ class Sheet extends React.Component {
             })
         }
 
-        const sheetNames = ['items', 'locations', 'relations', 'resources']
+        const sheetNames = ['items', 'locations', 'relations']
         sheetNames.forEach((sheetName) => {
             const sheetConfig = SHEET_SCHEMA[sheetName]
             const sheetData = this.data.raw.find(({ range }) => range.indexOf(sheetConfig.sheetName) >= 0).values

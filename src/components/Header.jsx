@@ -9,30 +9,27 @@ import {
     Modal
 } from '../semantic'
 import logo from '../images/logo-small-coalition.png'
-import About from './About'
-import Contact from './Contact'
-import Help from './Help'
 
 const Header = ({ mobile }) => {
     const [modalView, updateModalView] = React.useState(null)
-    let modalHeader
-    let modalContent
+    let modalTitle
+    let modalSrc
     switch (modalView) {
         case 'help':
-            modalHeader = 'How to use the Waste prevention directory'
-            modalContent = <Help />
+            modalTitle = 'Help'
+            modalSrc = 'https://docs.google.com/document/d/e/2PACX-1vSZldiYAJ_CHsy5YmdGLriu0OE8f-Qh3uEox9ULDjYDRUeaQCv4PiGOltbtC7RWjIMGjcJXKGTvGQcn/pub?embedded=true'
             break
         case 'about':
-            modalHeader = 'The Waste Prevention Directory'
-            modalContent = <About />
+            modalTitle = 'About'
+            modalSrc = 'https://docs.google.com/document/d/e/2PACX-1vQ3VLxzPhHJ1rflLoOT-EA4nM8D1k9FuFbGZrdscRX4DxSkFMV-XBdqHCuA-x0TW266NpNj1CeyZlII/pub?embedded=true'
             break
         case 'contact':
-            modalHeader = 'Contact'
-            modalContent = <Contact />
+            modalTitle = 'Contact'
+            modalSrc = 'https://docs.google.com/document/d/e/2PACX-1vQOnXo-DzjtkDM6r20Z9AGgNhd5rhW4lAmCukciLaX0v9Zr8ImNSx27xAvEXTBh1PSd7QRswLRWMdeq/pub?embedded=true'
             break
         default:
-            modalHeader = ''
-            modalContent = ''
+            modalTitle = ''
+            modalSrc = ''
     }
     return (
         <>
@@ -70,12 +67,14 @@ const Header = ({ mobile }) => {
                 closeIcon
                 onClose={() => updateModalView(null)}
             >
-                <Modal.Header>
-                    {modalHeader}
-                </Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
-                        {modalContent}
+                        <iframe
+                            title={modalTitle}
+                            frameBorder="0"
+                            style={{ width: '100%', minHeight: 500 }}
+                            src={modalSrc}
+                        />
                     </Modal.Description>
                 </Modal.Content>
             </Modal>

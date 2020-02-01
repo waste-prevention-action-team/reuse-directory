@@ -12,22 +12,22 @@
     "type": "git",
     "url": "git+https://github.com/waste-prevention-action-team/reuse-directory.git"
   },
-  "author": "Kaveh Karimi",
+  "author": "Kaveh Karimi (ka7eh)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/waste-prevention-action-team/reuse-directory/issues"
   },
   "homepage": "https://github.com/waste-prevention-action-team/reuse-directory#readme",
   "dependencies": {
-    "@babel/core": "~7.8.3",
+    "@babel/core": "~7.8.4",
     "@babel/plugin-proposal-class-properties": "~7.8.3",
     "@babel/plugin-proposal-export-default-from": "~7.8.3",
     "@babel/plugin-proposal-export-namespace-from": "~7.8.3",
     "@babel/polyfill": "~7.8.3",
-    "@babel/preset-env": "~7.8.3",
+    "@babel/preset-env": "~7.8.4",
     "@babel/preset-react": "~7.8.3",
-    "@sentry/browser": "~5.11.1",
-    "axios": "~0.19.1",
+    "@sentry/browser": "~5.11.2",
+    "axios": "~0.19.2",
     "babel-eslint": "~10.0.3",
     "babel-loader": "~8.0.6",
     "css-loader": "~3.4.2",
@@ -57,7 +57,7 @@
     "svg-inline-loader": "~0.8.0",
     "webpack": "~4.41.5",
     "webpack-cli": "~3.3.10",
-    "webpack-dev-server": "~3.10.1",
+    "webpack-dev-server": "~3.10.2",
     "webpack-visualizer-plugin": "~0.1.11"
   }
 }

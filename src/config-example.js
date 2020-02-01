@@ -33,12 +33,6 @@ const CONFIG = {
             sheetIndex: 3,
             sheetName: 'Categories',
             columns: 'A:B'
-        },
-        resources: {
-            sheetIndex: 4,
-            sheetName: 'Resources',
-            columns: 'A:C',
-            searchableColumns: []
         }
     },
     icons: {

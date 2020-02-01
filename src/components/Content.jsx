@@ -10,7 +10,6 @@ import Header from './Header'
 import Items from './Items'
 import Category from './Items/Category'
 import Repair from './Items/Repair'
-import Resources from './Resources'
 import { SheetContext } from './Sheet'
 
 const MOBILE_WIDTH = 850
@@ -71,7 +70,12 @@ class Content extends React.Component {
                 tabContent = <Repair />
                 break
             case 'resources':
-                tabContent = <Resources />
+                tabContent = <iframe
+                    title="Unique ReUse Opportunities"
+                    frameBorder="0"
+                    style={{ width: '100%', height: '100%' }}
+                    src="https://docs.google.com/document/d/e/2PACX-1vTgTEZC0NNfO9aj5i3z8Kqt3odtjkkRMq8hrelEK6Wgbv4_m3F04JgpY6toETZLOE91DIKQbnyuTYHl/pub?embedded=true"
+                />
                 break
             case 'search_item':
             default:
