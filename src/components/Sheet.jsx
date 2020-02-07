@@ -3,7 +3,7 @@ import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
 
 import CONFIG from '../config'
-import loadScript from '../utils/loadScript'
+import { loadScript } from '../utils/loadExternalContent'
 
 const SHEET_SCHEMA = CONFIG.google_sheet_schema
 
@@ -39,7 +39,6 @@ class Sheet extends React.Component {
     }
 
     componentDidMount() {
-        // this.processSheets(FIXTURES)
         loadScript(
             'https://apis.google.com/js/api.js',
             () => {

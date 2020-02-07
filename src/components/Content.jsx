@@ -5,6 +5,7 @@ import {
     Menu,
     Responsive
 } from '../semantic'
+import { loadIframe } from '../utils/loadExternalContent'
 import Map, { MapContext } from './Map'
 import Header from './Header'
 import Items from './Items'
@@ -18,6 +19,8 @@ class Content extends React.Component {
     // eslint-disable-next-line
     static contextType = SheetContext
 
+    iframeRef = React.createRef()
+
     state = {
         hasMap: false,
         screenWidth: null,
@@ -28,6 +31,15 @@ class Content extends React.Component {
         if (!this.state.hasMap) {
             this.map = new Map()
             this.setState({ hasMap: true })
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.iframeRef.current) {
+            loadIframe(
+                this.iframeRef.current,
+                'https://docs.google.com/document/d/e/2PACX-1vTgTEZC0NNfO9aj5i3z8Kqt3odtjkkRMq8hrelEK6Wgbv4_m3F04JgpY6toETZLOE91DIKQbnyuTYHl/pub?embedded=true'
+            )
         }
     }
 
@@ -71,10 +83,11 @@ class Content extends React.Component {
                 break
             case 'resources':
                 tabContent = <iframe
+                    ref={this.iframeRef}
                     title="Unique ReUse Opportunities"
                     frameBorder="0"
                     style={{ width: '100%', height: '100%' }}
-                    src="https://docs.google.com/document/d/e/2PACX-1vTgTEZC0NNfO9aj5i3z8Kqt3odtjkkRMq8hrelEK6Wgbv4_m3F04JgpY6toETZLOE91DIKQbnyuTYHl/pub?embedded=true"
+                    srcDoc=""
                 />
                 break
             case 'search_item':

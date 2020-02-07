@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { loadIframe } from '../utils/loadExternalContent'
+
 import {
     Dropdown,
     Header as SUIHeader,
@@ -11,12 +13,13 @@ import {
 import logo from '../images/logo-small-coalition.png'
 
 const Header = ({ mobile }) => {
+    const iframeRef = React.useRef(null)
     const [modalView, updateModalView] = React.useState(null)
     let modalTitle
     let modalSrc
     switch (modalView) {
         case 'help':
-            modalTitle = 'Help'
+            modalTitle = 'How to Use'
             modalSrc = 'https://docs.google.com/document/d/e/2PACX-1vSZldiYAJ_CHsy5YmdGLriu0OE8f-Qh3uEox9ULDjYDRUeaQCv4PiGOltbtC7RWjIMGjcJXKGTvGQcn/pub?embedded=true'
             break
         case 'about':
@@ -31,6 +34,13 @@ const Header = ({ mobile }) => {
             modalTitle = ''
             modalSrc = ''
     }
+
+    React.useEffect(() => {
+        if (iframeRef.current) {
+            loadIframe(iframeRef.current, modalSrc)
+        }
+    })
+
     return (
         <>
             <Menu id="Header" borderless fixed="top" inverted>
@@ -49,14 +59,14 @@ const Header = ({ mobile }) => {
                             <Dropdown icon="bars">
                                 <Dropdown.Menu>
                                     <Dropdown.Item onClick={() => updateModalView('contact')}>Contact us</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => updateModalView('help')}>Help</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => updateModalView('help')}>How to Use</Dropdown.Item>
                                     <Dropdown.Item onClick={() => updateModalView('about')}>About</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Menu.Item> :
                         <>
                             <Menu.Item onClick={() => updateModalView('contact')}>Contact us</Menu.Item>
-                            <Menu.Item onClick={() => updateModalView('help')}>Help</Menu.Item>
+                            <Menu.Item onClick={() => updateModalView('help')}>How to Use</Menu.Item>
                             <Menu.Item onClick={() => updateModalView('about')}>About</Menu.Item>
                         </>}
                 </Menu.Menu>
@@ -70,10 +80,11 @@ const Header = ({ mobile }) => {
                 <Modal.Content>
                     <Modal.Description>
                         <iframe
+                            ref={iframeRef}
                             title={modalTitle}
                             frameBorder="0"
                             style={{ width: '100%', minHeight: 500 }}
-                            src={modalSrc}
+                            srcDoc=""
                         />
                     </Modal.Description>
                 </Modal.Content>
