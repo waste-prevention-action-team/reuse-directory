@@ -23,7 +23,7 @@ const renderItems = (relations, items) => {
             if (!filteredItems[itemName]) {
                 filteredItems[itemName] = (
                     <List.Item key={itemName}>
-                        {idx + 1} - {itemName}
+                        {itemName}
                     </List.Item>
                 )
             }
