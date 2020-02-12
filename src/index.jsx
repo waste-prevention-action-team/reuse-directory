@@ -10,7 +10,12 @@ import App from './components/App'
 import './style/base.less'
 
 if (CONFIG.google_analytics_key) {
-    ReactGA.initialize(CONFIG.google_analytics_key)
+    ReactGA.initialize(
+        CONFIG.google_analytics_key,
+        {
+            standardImplementation: true
+        }
+    )
     ReactGA.pageview(window.location.pathname + window.location.search)
 }
 

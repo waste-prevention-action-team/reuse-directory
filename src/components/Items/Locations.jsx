@@ -11,7 +11,7 @@ import { MapContext } from '../Map'
 const renderItems = (relations, items) => {
     const filteredItems = {}
     const missingItems = []
-    relations.forEach((relation, idx) => {
+    relations.forEach((relation) => {
         const relationItem = items.find((item) => item.get('Id') === relation.get('Item'))
         if (relationItem) {
             const itemName = relationItem.get('Item')
