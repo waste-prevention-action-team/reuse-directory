@@ -137,7 +137,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve('.', 'src', 'index.html'),
-            title: CONFIG.site_title
+            title: CONFIG.site_title,
+            google_analytics_key: MODE !== '"development"' ? CONFIG.google_analytics_key : null
         }),
         new FaviconsWebpackPlugin({
             logo: path.resolve('.', 'src', 'images', 'logo-small-coalition.png'),
