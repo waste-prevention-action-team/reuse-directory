@@ -36822,12 +36822,6 @@ body,
 .leaflet-popup-pane .ui.card {
   box-shadow: none;
 }
-@media all and (max-width: 850px) {
-  #Content {
-    top: 0;
-    height: 100%;
-  }
-}
 
 
-/*# sourceMappingURL=../js/main-32986b73775a7ef98189.js.map*/
+/*# sourceMappingURL=../js/main-56f66c5a848452aa3125.js.map*/
