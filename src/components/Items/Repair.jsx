@@ -2,6 +2,7 @@ import React from 'react'
 
 import {
     Accordion,
+    Icon,
     List,
     Segment
 } from '../../semantic'
@@ -29,12 +30,19 @@ const Repair = () => {
             return (
                 <List.Item key={location.get('Id')}>
                     <List.Header
-                        as="a"
                         onClick={() => marker && marker.openPopup()}
                         onMouseOver={() => marker && marker.setIcon(map.getMarkerIcon('green'))}
                         onMouseOut={() => marker && marker.setIcon(map.getMarkerIcon('blue'))}
                     >
                         {location.get('Location')}
+                        &nbsp;
+                        <a href={`https://www.google.com/maps/search/?api=1&query=${location.get('LatLng')}`} target="_blank" rel="noopener noreferrer">
+                            <Icon
+                                name="external alternate"
+                                color="blue"
+                                title="Open in Google Map"
+                            />
+                        </a>
                     </List.Header>
                     <List.Description>
                         <List.List>

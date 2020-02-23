@@ -46,7 +46,7 @@ const Header = ({ mobile }) => {
             <Menu id="Header" borderless fixed="top" inverted>
                 <Menu.Item header>
                     <SUIHeader inverted>
-                        <Image className="logo" src={logo} />
+                        {mobile ? null : <Image className="logo" src={logo} />}
                         <SUIHeader.Content>
                             Waste Prevention Directory
                             <SUIHeader.Subheader>Corvallis and Surrounding Areas</SUIHeader.Subheader>

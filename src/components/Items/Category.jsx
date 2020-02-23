@@ -156,7 +156,17 @@ const Category = () => {
                                                 <Card.Meta>
                                                     {
                                                         location.Address ?
-                                                            <div><b>Address: </b>{location.Address}</div> :
+                                                            <div>
+                                                                <b>Address: </b>{location.Address}
+                                                                &nbsp;
+                                                                <a href={`https://www.google.com/maps/search/?api=1&query=${location.LatLng}`} target="_blank" rel="noopener noreferrer">
+                                                                    <Icon
+                                                                        name="external alternate"
+                                                                        color="blue"
+                                                                        title="Open in Google Map"
+                                                                    />
+                                                                </a>
+                                                            </div> :
                                                             null
                                                     }
                                                     {location.Phone ?

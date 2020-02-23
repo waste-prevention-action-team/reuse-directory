@@ -155,11 +155,10 @@ class Content extends React.Component {
                     fireOnMount
                     onUpdate={this.handleWidthUpdate}
                 >
+                    <Header mobile />
                     <Grid id="Content" className="no-padding mobile">
-                        <Grid.Column id="MapColumn" className="no-padding no-margin" width={16}>
-                            <div id="Map" />
-                        </Grid.Column>
                         <Grid.Column id="Sidebar" width={16}>
+                            <div id="Map" style={{ display: 'none' }} />
                             {hasMap && this.renderContent()}
                         </Grid.Column>
                     </Grid>
