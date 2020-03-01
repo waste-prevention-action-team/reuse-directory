@@ -3,7 +3,6 @@ import React from 'react'
 import {
     Card,
     Form,
-    Header,
     Icon,
     Label,
     List,
@@ -103,7 +102,7 @@ const Category = () => {
             </Form>
             {searchCategory ?
                 <>
-                    <Header>
+                    <div style={{ marginTop: 5 }}>
                         Legend:
                         {['Reuse', 'Recycle', 'Repair'].map(
                             (wpType) => (
@@ -112,13 +111,21 @@ const Category = () => {
                                         {...CONFIG.icons[wpType]}
                                         circular
                                         inverted
-                                        size="small"
+                                        size="tiny"
                                     />
                                     {wpType}
                                 </Label>
                             )
                         )}
-                    </Header>
+                        <Label image size="small">
+                            <Icon
+                                name="external alternate"
+                                color="blue"
+                                size="small"
+                            />
+                            Map
+                        </Label>
+                    </div>
                     <Card.Group id="Cards">
                         <div ref={cardGroupTopRef} />
                         {locations ?

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { SheetContext } from '../Sheet'
 import {
-    Card, Header, Icon, Label, List, Modal
+    Card, Icon, Label, List, Modal
 } from '../../semantic'
 import CONFIG from '../../config'
 import { MapContext } from '../Map'
@@ -146,8 +146,9 @@ const Locations = ({ itemId, locations }) => {
                             map.zoomToMarkersBound()
                             return (
                                 <>
-                                    <Header style={{ margin: 0 }}>
+                                    <div>
                                         Legend:
+                                        &nbsp;
                                         {['Reuse', 'Recycle', 'Repair'].map(
                                             (wpType) => (
                                                 <Label key={wpType} image size="small">
@@ -155,13 +156,21 @@ const Locations = ({ itemId, locations }) => {
                                                         {...CONFIG.icons[wpType]}
                                                         circular
                                                         inverted
-                                                        size="small"
+                                                        size="tiny"
                                                     />
                                                     {wpType}
                                                 </Label>
                                             )
                                         )}
-                                    </Header>
+                                        <Label image size="small">
+                                            <Icon
+                                                name="external alternate"
+                                                color="blue"
+                                                size="small"
+                                            />
+                                            Map
+                                        </Label>
+                                    </div>
                                     <Card.Group id="Cards">
                                         {renderedLocations}
                                         <div>&nbsp;</div>
