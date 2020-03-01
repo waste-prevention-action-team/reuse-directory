@@ -36802,7 +36802,7 @@ body,
   height: 100%;
 }
 #Content.mobile #TabContent {
-  height: calc(95% - 3 * 55px) !important;
+  height: calc(95% - 2 * 55px) !important;
 }
 #Content.mobile #MapColumn {
   height: 40%;
@@ -36824,4 +36824,4 @@ body,
 }
 
 
-/*# sourceMappingURL=../js/main-56f66c5a848452aa3125.js.map*/
+/*# sourceMappingURL=../js/main-2fe1139ce00a36b909b9.js.map*/
