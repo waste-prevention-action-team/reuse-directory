@@ -111,7 +111,7 @@ const Category = () => {
                                         {...CONFIG.icons[wpType]}
                                         circular
                                         inverted
-                                        size="tiny"
+                                        size="mini"
                                     />
                                     {wpType}
                                 </Label>

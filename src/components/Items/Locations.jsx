@@ -92,7 +92,7 @@ const Locations = ({ itemId, locations }) => {
                                                             {...CONFIG.icons[wpType]}
                                                             circular
                                                             inverted
-                                                            size="tiny"
+                                                            size="mini"
                                                             title={wpType}
                                                         />
                                                     ))}
