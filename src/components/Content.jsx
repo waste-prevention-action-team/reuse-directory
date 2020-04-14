@@ -5,7 +5,7 @@ import {
     Menu,
     Responsive
 } from '../semantic'
-import { loadIframe } from '../utils/loadExternalContent'
+import { loadIframe } from '../utils'
 import Map, { MapContext } from './Map'
 import Header from './Header'
 import Items from './Items'

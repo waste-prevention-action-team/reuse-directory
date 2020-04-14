@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { loadIframe } from '../utils/loadExternalContent'
+import { loadIframe } from '../utils'
 
 import {
     Dropdown,

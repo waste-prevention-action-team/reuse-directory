@@ -6,6 +6,7 @@ import {
     Card, Icon, Label, List, Modal
 } from '../../semantic'
 import CONFIG from '../../config'
+import { cleanUrl } from '../../utils'
 import { MapContext } from '../Map'
 
 const renderItems = (relations, items) => {
@@ -114,7 +115,7 @@ const Locations = ({ itemId, locations }) => {
                                                             null
                                                     }
                                                     {location.Phone ? <div><b>Phone: </b>{location.Phone}</div> : null}
-                                                    {location.Website ? <div><b>Website: </b><a href={location.Website} target="blank">{location.Website}</a></div> : null}
+                                                    {location.Website ? <div><b>Website: </b><a href={cleanUrl(location.Website)} target="blank">{location.Website}</a></div> : null}
                                                     {location.Email ? <div><b>Email: </b>{location.Email}</div> : null}
                                                     {location.Hours ? <div><b>Hours: </b>{location.Hours}</div> : null}
                                                 </Card.Meta>

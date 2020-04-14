@@ -6,6 +6,7 @@ import markerShadowImage from 'leaflet/dist/images/marker-shadow.png'
 import markerImage from '../images/map-marker-alt-solid.svg'
 
 import CONFIG from '../config'
+import { cleanUrl } from '../utils'
 
 export const MapContext = React.createContext(null)
 
@@ -65,7 +66,7 @@ class Map {
                 <div class="meta">
                     ${Address ? `<div><b>Address: </b>${Address}</div>` : ''}
                     ${Phone ? `<div><b>Phone: </b>${Phone}</div>` : ''}
-                    ${Website ? `<div><b>Website: </b><a href=${Website} target="blank">${Website}</a></div>` : ''}
+                    ${Website ? `<div><b>Website: </b><a href=${cleanUrl(Website)} target="blank">${Website}</a></div>` : ''}
                     ${Email ? `<div><b>Email: </b>${Email}</div>` : ''}
                     ${Hours ? `<div><b>Hours: </b>${Hours}</div>` : ''}
                 </div>

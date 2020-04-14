@@ -9,6 +9,7 @@ import {
     Modal
 } from '../../semantic'
 import CONFIG from '../../config'
+import { cleanUrl } from '../../utils'
 import { SheetContext } from '../Sheet'
 import { MapContext } from '../Map'
 
@@ -183,7 +184,7 @@ const Category = () => {
                                                         <div>
                                                             <b>Website: </b>
                                                             <a
-                                                                href={location.Website}
+                                                                href={cleanUrl(location.Website)}
                                                                 target="blank"
                                                             >
                                                                 {location.Website}

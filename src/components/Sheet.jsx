@@ -3,7 +3,7 @@ import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
 
 import CONFIG from '../config'
-import { loadScript } from '../utils/loadExternalContent'
+import { loadScript } from '../utils'
 
 const SHEET_SCHEMA = CONFIG.google_sheet_schema
 

@@ -37,3 +37,7 @@ export const loadIframe = (iframe, src) => {
             })
         })
 }
+
+export const cleanUrl = (url) => (
+    url.indexOf('http') === 0 ? url : `http://${url}`
+)
