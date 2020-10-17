@@ -48,12 +48,12 @@ If you have restricted your application to specific domains on Google API Consol
 For example, you can add `reuse-direcoty.org` to your `hosts` file on Linux and include it in your domains list on Google API Console.
 If you do so, you also need to specify this domain in `ALLOWED_HOSTS` environment variable like this:
 
-`ALLOWED_HOSTS=["reuse-directory.org"] npm start`
+`ALLOWED_HOSTS='["reuse-directory.org"]' npm start`
  
  or
  
  ```
- export ALLOWED_HOSTS=["reuse-directory.org"]
+ export ALLOWED_HOSTS='["reuse-directory.org"]'
  npm start 
  ```
 

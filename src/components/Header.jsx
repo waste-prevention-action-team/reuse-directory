@@ -18,6 +18,10 @@ const Header = ({ mobile }) => {
     let modalTitle
     let modalSrc
     switch (modalView) {
+        case 'covid-19':
+            modalTitle = 'COVID-19 UPDATE'
+            modalSrc = 'https://docs.google.com/document/d/e/2PACX-1vT9ZzFOdUHQCq3VfWlB_hFpq_eXkaSV0f72b0BgncsY0K8YraWoASPyPWtk8-ASE0Uud4m_bxAjkT5-/pub?embedded=true'
+            break
         case 'help':
             modalTitle = 'How to Use'
             modalSrc = 'https://docs.google.com/document/d/e/2PACX-1vSZldiYAJ_CHsy5YmdGLriu0OE8f-Qh3uEox9ULDjYDRUeaQCv4PiGOltbtC7RWjIMGjcJXKGTvGQcn/pub?embedded=true'
@@ -58,6 +62,7 @@ const Header = ({ mobile }) => {
                         <Menu.Item>
                             <Dropdown icon="bars">
                                 <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => updateModalView('covid-19')}>COVID-19 UPDATE</Dropdown.Item>
                                     <Dropdown.Item onClick={() => updateModalView('contact')}>Contact us</Dropdown.Item>
                                     <Dropdown.Item onClick={() => updateModalView('help')}>How to Use</Dropdown.Item>
                                     <Dropdown.Item onClick={() => updateModalView('about')}>About</Dropdown.Item>
@@ -65,6 +70,7 @@ const Header = ({ mobile }) => {
                             </Dropdown>
                         </Menu.Item> :
                         <>
+                            <Menu.Item style={{ background: 'red', fontWeight: 700 }} onClick={() => updateModalView('covid-19')}>COVID-19 UPDATE</Menu.Item>
                             <Menu.Item onClick={() => updateModalView('contact')}>Contact us</Menu.Item>
                             <Menu.Item onClick={() => updateModalView('help')}>How to Use</Menu.Item>
                             <Menu.Item onClick={() => updateModalView('about')}>About</Menu.Item>
