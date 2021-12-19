@@ -84,7 +84,7 @@ class Content extends React.Component {
             case 'resources':
                 tabContent = <iframe
                     ref={this.iframeRef}
-                    title="Unique ReUse Opportunities"
+                    title="Unique ReUse and Recycling Opportunities"
                     frameBorder="0"
                     style={{ width: '100%', height: '100%' }}
                     srcDoc=""
@@ -118,7 +118,7 @@ class Content extends React.Component {
                     <Menu.Item
                         name="resources"
                         active={activeTab === 'resources'}
-                        content="Unique ReUse Opportunities"
+                        content="Unique ReUse and Recycling Opportunities"
                         onClick={this.handleTabChange}
                     />
                 </Menu>
